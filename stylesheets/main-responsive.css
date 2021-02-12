@@ -150,7 +150,7 @@ there.
         margin-top: 50px;
     }
     ul.slimmenu.collapsed li .sub-collapser, ul.slimmenu > li > a:first-child {
-        font-size: 14px;
+        font-size: 18px;
         line-height: 21px;
         padding: 3px 0;
     }
@@ -322,7 +322,7 @@ there.
         padding-right: 50px;
     }
     .main-heading h6{
-        font-size: 12px;
+        font-size: 18px;
         line-height: 19px;
     }
     .cd-headline{
