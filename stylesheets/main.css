@@ -1310,6 +1310,17 @@ nav.mastnav.signature-karl {
   background-color: #00f1d5;
 }
 
+xmp {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  background: #121212;
+  color: #ffffff;
+  padding: 2%;
+  -webkit-box-shadow: 10px 10px 0px -1px #00F1D5; 
+  box-shadow: 10px 10px 0px -1px #00F1D5;
+
+}
+
 .font1, .font2, .font3, .font3xblack, .font3thin, .font3xlight{
   font-family: 'IBM Plex Mono', monospace;
 }

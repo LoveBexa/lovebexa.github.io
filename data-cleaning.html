@@ -140,14 +140,43 @@
         <div class="row">
           <article class="col-md-8">
             <p class="grey">
-              This is a prototype application that combines and reformats multiple .csv files then cleans and prepares it for export to a JSON that is ready to use for visualisation. A GUI was also built to load the dataset, and translate it to JSON and then loaded back in to generate visualisations and export these. 
-            </p>
+              This is a prototype application that combines and reformats multiple .csv files then cleans and prepares it for export to a JSON that is ready to use for visualisation. A GUI was also built to load the dataset, and translate it to JSON and then loaded back in to generate visualisations ready to be exported.
+            </p><br>
+
+            <h3 class="font3xblack">Overview</h3>
+            <p class="grey">
+              This overview diagram was drawn to show the flow of how the application will be used. From this it was gathered that perhaps two applications or two separate functions would need to be created: clean, parsing the data and then loading the data to produce graph visualisations.
+              <img src="images/project/overview-diagram.png" class="img-responsive">
+            </p><br>
+
+            <h3 class="font3xblack">Loading the data</h3>
+            <p class="grey">
+              Python Pandas library was used to load the data into a DataFrame as this made it easy to quickly view, manipulate and inspect the data closely.<br>
+            <a class="btn btn-signature btn-signature-karl btn-signature-color"
+            href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb" target="new">View Code Snippet</a>
+            </p><br>
+
+
+            <h3 class="font3xblack">Cleaning the data</h3>
 
             <p class="grey">
-              <h3 class="font3xblack">Cleaning the data</h3>
-              A GUI was built to load the initial data
+              The next focus was to allow the user to load the dataset via inputting the file location, clean the data and then reformat/export as a JSON. As the dataset contain over 100,000 isntances JSON file was used because of the low cost of data usage and high parsing speeds. It was decided that all files would be merged into 1 datafile that contained only the useful attributes for the visualisations. The rest were removed<br>
+
+            <a class="btn btn-signature btn-signature-karl btn-signature-color"
+            href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb" target="new">View Code Snippet</a>
+            </p><br>
+
+
+            <h3 class="font3xblack">Analysing the data</h3>
+
+            <p class="grey">
+              Descriptive statistic of dataset was needed before any visualisation was done.<br>
+
+            <a class="btn btn-signature btn-signature-karl btn-signature-color"
+            href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Wrangling.ipynb" target="new">View Code Snippet</a>
             </p>
 
+            
 
 
           </article>
@@ -155,7 +184,7 @@
             <ul class="project-spec signature-karl">
               <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
               <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
-              <li class="font3xblack black">Tools / <span class="font3light dark">Pandas, Numpy, Tkinter, Matplotlib</span></li>
+              <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy, Tkinter, Matplotlib</span></li>
             </ul>
             <a class="btn btn-signature btn-signature-karl btn-signature-color"
               href="https://github.com/LoveBexa/data-cleaning-tool" target="new">Github Repo</a>
@@ -179,7 +208,7 @@
                     src="images/prev.svg" /></a></li>
               <li><a class="ajax-link" href="index.html"><img data-no-retina alt="" title=""
                     src="images/grid.svg" /></a></li>
-              <li><a class="ajax-link" href="project02.html"><img data-no-retina alt="" title=""
+              <li><a class="ajax-link" href="coin-counter.html"><img data-no-retina alt="" title=""
                     src="images/next.svg" /></a></li>
             </ul>
           </article>
@@ -212,6 +241,7 @@
           </article>
         </div>
 
+        
 
       </div>
     </footer>
