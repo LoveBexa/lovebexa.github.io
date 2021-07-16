@@ -33,6 +33,7 @@ p {
     font-size: 12px;
     line-height: 25px;
     margin-bottom: 0;
+    margin-top: 3%;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -229,12 +230,14 @@ nav.mastnav.signature-karl ul li{
 .main-link{
   font-size: 40px;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: normal;
 }
 .menu-close-notification span{
   position: absolute;
   top: 40px;
   right: 60px;
-    font-size: 34px;
+  font-size: 34px;
 }
 
 /* 5. Pages
@@ -1044,7 +1047,7 @@ fieldset h1 {
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .color {
-  color: #0af2d6;
+  color: #00f1d5;
 }
 .white {
   color: #ffffff;
@@ -1062,7 +1065,7 @@ fieldset h1 {
   color: #121212;
 }
 .color-bg {
-  background-color: #0af2d6;
+  background-color: #00f1d5;
 }
 .white-bg {
   background-color: #ffffff;
@@ -1083,14 +1086,14 @@ a {
   color: #121212;
 }
 a:hover {
-  color: #0af2d6;
+  color: #00f1d5;
 }
 ::selection {
-  background: #0af2d6;
+  background: #00f1d5;
   color: #ffffff;
 }
 ::-moz-selection {
-  background: #0af2d6;
+  background: #00f1d5;
   color: #ffffff;
 }
 body,
@@ -1098,7 +1101,7 @@ p {
   color: #000000;
 }
 .btn-signature-color {
-  background-color: #0af2d6 !important;
+  background-color: #00f1d5 !important;
   color: #292929 !important;
   font-family: 'IBM Plex Mono', monospace;
 }
@@ -1108,7 +1111,7 @@ p {
 }
 .btn-signature-dark:hover,
 .btn-signature-white:hover {
-  background-color: #0af2d6 !important;
+  background-color: #00f1d5 !important;
 }
 nav.mastnav.signature-karl {
   border-color: #ffffff;
@@ -1117,7 +1120,7 @@ nav.mastnav.signature-karl {
   color: #ffffff;
 }
 .works-filter.signature-karl li a:hover {
-  color: #0af2d6;
+  color: #00f1d5;
 }
 .filter-notification,
 .filter-notification:visited {
@@ -1130,7 +1133,7 @@ nav.mastnav.signature-karl {
   border-color: #ffffff;
 }
 .works-item-inner h3 > span {
-  border-color: #0af2d6;
+  border-color: #00f1d5;
 }
 .team-overlay {
   border-color: #121212;
@@ -1143,8 +1146,8 @@ nav.mastnav.signature-karl {
 }
 .main-link:hover,
 .sub-menu a:hover {
-  color: #0af2d6 !important;
-  border-bottom: 5px solid #0af2d6;
+  color: #00f1d5 !important;
+  border-bottom: 5px solid #00f1d5;
   -webkit-transition: 0.25s all ease-in-out;
 	-moz-transition: 0.25s all ease-in-out;
 	-o-transition: 0.25s all ease-in-out;
@@ -1152,13 +1155,13 @@ nav.mastnav.signature-karl {
 }
 
 .project-nav-icon-wrap li:hover {
-  background-color: #0af2d6;
+  background-color: #00f1d5;
 }
 .filter-active span {
-  color: #0af2d6;
+  color: #00f1d5;
 }
 .cd-headline.loading-bar .cd-words-wrapper::after {
-  background-color: #0af2d6;
+  background-color: #00f1d5;
 }
 .font1 {
     font-family: 'IBM Plex Mono', monospace;
