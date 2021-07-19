@@ -1310,12 +1310,14 @@ nav.mastnav.signature-karl {
   background-color: #00f1d5;
 }
 
-xmp {
-  font-size: 1.1rem;
+pre {
   letter-spacing: 1px;
   background: #121212;
   color: #ffffff;
   padding: 2%;
+  margin: 1% 0;
+  border: 0;
+  border-radius: 0px;
   -webkit-box-shadow: 10px 10px 0px -1px #00F1D5; 
   box-shadow: 10px 10px 0px -1px #00F1D5;
 
@@ -1326,7 +1328,7 @@ xmp {
 }
 
 .font3light{
-  font-weight: normal;
+  font-weight: 300;
 
 }
 .font3xblack {
@@ -1345,7 +1347,9 @@ xmp {
 body,
 p {
   font-family: 'IBM Plex Sans', monospace;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 300;
+
 }
 
 
