@@ -148,7 +148,7 @@
               The client initially needed the program to generate the mean, mode and median for the inspection score per
               year for each type of vendor’s seating and for each ‘zip code’ therefore these functions were built into
               the visualiation tool.<br>
-              Furthermore, the client wanted a way to save the cleaned file and enter their own file name.
+              Furthermore, the client wanted a way to save/export the cleaned file and enter their own file name.
             </p>
 
             <h3 class="font3xblack add-top-quarter">Overview</h3>
@@ -161,50 +161,238 @@
               <img src="images/project/overview-diagram.png" class="img-responsive">
             </p>
 
-            <h3 class="font3xblack add-top-quarter">Loading the data</h3>
+
+
+            <h3 class="font3xblack add-top-quarter">Designing The GUI</h3>
+
             <p class="grey">
-              Python Pandas library was used to load the data into a DataFrame as this made it easy to quickly view,
-              manipulate and inspect the data closely and easily convert from .csv to DF. Using the print and input
-              functions allowed the user to enter the file names manually.
+              The client needed a way to input the datafiles visually and clean the data therefore using input fields,
+              upload files dialog and buttons was best practise to minimise errors and reduce complication of entering
+              incorrect data. This way the user will only be able to select from given options and load files available
+              on the desktop.
 
             </p>
+
+            <p> <img src="images/project/data-cleaning-tool.png" class="img-responsive">
+
+            </p>
+
+            <p class="grey">
+              Feedback showed that a status area was needed to provide consistent feedback to build trust in the
+              application. Furthermore, extra labelled input fields needed to be added for the
+              different data files to make it more intuitive for the end user to know which needed to uploaded and
+              where.
+
+              Buttons to load the different functions like clean and export made sense so the user had
+              more control. A status bar showing green message to verify and red message for errors was added to provide
+              continuous feedback to user.
+            </p>
+
+
 
             <p>
-              <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
-                href="#loadingData" role="button" aria-expanded="false" aria-controls="loadingData">Click For Code </a>
+              <img src="images/project/data-analysis-wireframe.png" class="img-responsive">
+
+
             </p>
 
 
+
+
+
+
+            <h3 class="font3xblack add-top-quarter">Intergrating Tkinter GUI</h3>
+            <p class="grey">
+              Tkinter provides a variety of widgets that I needed such as labels, buttons, input fields and checkboxes
+              which were in the GUI wireframes. Furthermore Tkinker has a file dialogue function that can pop-up on
+              click to source files, close the window, provide extra window functionality options. I was also able to
+              customise the style of the app and it was the fastest way to implement the program with a GUI to create a
+              prototype test.
+            </p>
 
             <!-- start: click to tab code -->
 
+            <p>
+              <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                href="#dataCleaning" role="button" aria-expanded="false" aria-controls="dataCleaning">Click For Code
+              </a>
+            </p>
+
+
             <div class="row add-top-quarter">
               <div class="col">
-                <div class="collapse multi-collapse" id="loadingData">
+                <div class="collapse multi-collapse" id="dataCleaning">
                   <div class="card card-body">
                     <pre>
-  import pandas as pd
-  import numpy as np
-  
-  # missing values
-  missing_values = ["NA", "N/A", "na", r"^\s*$", "", " ", "NaN"]
-  columns = 'columns'
-  
-  # ----- IMPORT CSV FILES ---- #
-  
-  print("Hello welcome to the data cleaning tool. Please upload your files:")
-  inventory_file = input("Please enter the full file location for the inventory file:")
-  violation_file = input("Please enter the full file location for the violation file:")
-  inspection_file = input("Please enter the full file location for the inspection file:")
-  
-  inventory = pd.read_csv(inventory_file, keep_default_na=False, na_values=missing_values)
-  violation = pd.read_csv(violation_file, keep_default_na=False, na_values=missing_values)
-  inspection = pd.read_csv(inspection_file, keep_default_na=False, na_values=missing_values)
+import tkinter as tk
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt 
+import matplotlib.cbook as cbook
+import json, os
+from tkinter import ttk
+from tkinter import *
+from tkinter.filedialog import asksaveasfile 
+from tkinter.filedialog import asksaveasfilename
+from tkinter import filedialog
+from tkinter import messagebox
+from datetime import datetime
+
+# ------ GLOBAL VARIABLES ------ #
+
+# Change missing values to NaN for consistency
+missing_values = ["NA", "N/A", "na", r"^\s*$", "", " ", "NaN"]
+# counts value then finds the one that appears the most time (mode)
+df1_mode =  lambda x:x.value_counts().index[0]
+# Changes to true once file clean has been done at least once
+file_cleaned = False
+# creating instance of Tk class
+window = tk.Tk()
+window.title("DATA ANALYSIS TOOL")
+
+# disable windows from resizing
+window.resizable(False, False)  
+
+# window sizing
+window_height = 450
+window_width = 500
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+
+# Places window in middle of screen
+x_cordinate = int((screen_width/2) - (window_width/2))
+y_cordinate = int((screen_height/2) - (window_height/2))
+window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+
+
+# Adding Tabs to window 
+tab_control = ttk.Notebook(window)
+cleaning_tab = ttk.Frame(tab_control)
+graph_tab = ttk.Frame(tab_control)
+
+# Adding text to tab and styling 
+tab_control.add(cleaning_tab, text="1. Clean Data")
+tab_control.add(graph_tab, text="2. Generate Graph")
+tab_control.pack(expand=1, fill="both")
+                     
+
+</pre>
+
+                    <pre>
+# ------ TABLE: SEATING MEAN, MEDIAN, MODE  ---- # 
+
+def table_seating():
+     
+ # SEATING 
+
+ # making grouped by activity date first, then seating
+ grouped = json_file.groupby(['ACTIVITY DATE', 'SEATING'])
+
+ # make activity date by YEAR 
+ # using score to calculate
+ group_json_file= grouped['SCORE']
+
+ # Calculating Mode by using value counts then finding the first value in row
+
+ # calculating mean, median 
+ df1_mean = group_json_file.agg([('MEAN', 'mean'), ('MEDIAN','median'), ('MODE', df1_mode)])
+
+ # turn mean/median/mode groupby table into DataFrame 
+ df1_1 = pd.DataFrame(df1_mean)
+
+ print(df1_1)
+ return df1_1
+
+# ------ TABLE: ZIP CODE MEAN, MEDIAN, MODE ---- # 
+
+def table_zip():
+
+ # making grouped by activity date first, then seating
+ grouped2 = json_file.groupby(['ACTIVITY DATE', 'ZIP CODES'])
+
+ # using score to calculate
+ group_df2 = grouped2['SCORE']
+
+ # Calculating Mode by using value counts then finding the first value in row
+
+ # calculating mean, median 
+ df2_mean = group_df2.agg([('MEAN', 'mean'), ('MEDIAN','median'), ('MODE', df1_mode)])
+
+ # turn mean/median/mode groupby table into DataFrame 
+ df2_1 = pd.DataFrame(df2_mean)
+
+ print("First 100:\n", df2_1.head(100))
+
+ return df2_1
+
+
+# ------ WRANGLING - TOTAL VIOLATION COUNT PER CODE ----- # 
+
+def w_total():
+
+ global total_score
+ # total violations PER facility
+ total_score = json_file['VIOLATION CODE'].value_counts().reset_index() # reset index
+ total_score.columns = ['VIOLATION CODE', 'TOTAL VIOLATIONS']
+ total_score = total_score.sort_values(by=['VIOLATION CODE'])
+
+ # Remove values below this total amount
+ values_below = slider_max.get()
+ # Drop rows, keep rest 
+ total_score = total_score[total_score['TOTAL VIOLATIONS'] > values_below]
+
+ print(total_score)
+ return total_score
+
+
+# ------ WRANGLING - TOTAL VIOLATION FOR ZIP CODE COMPARISON FACILITIES ----- # 
+
+def w_violation_facility():
+
+ global df6, df6_str, colours
+
+ # Grab df5_merge and count up violations per facility 
+ df6_count = json_file['FACILITY ID'].value_counts().reset_index()
+
+ # Total violations of each facility
+ df6_count.columns = ['FACILITY ID', 'TOTAL VIOLATIONS']
+
+ # Add total violations to end of facilities dataframe. 
+ df6_merge = pd.merge(json_file, df6_count, how='inner', on='FACILITY ID')
+
+ # Groups by zip then shows total violations per facility grouped via zip code
+ df6_total = df6_merge.groupby('ZIP CODES')['FACILITY ID'].value_counts().to_frame(name = 'TOTAL VIOLATIONS').reset_index()
+
+ # std calculates variability and avg distance from mean
+ agg_group = [ ('FACILITIES', 'count'), ('VIOLATIONS', 'sum'), ('STD','std'),
+ ('MEAN','mean'),('MEDIAN','median'), ('MODE', df1_mode), ('MIN', 'min'), ('MAX', 'max')]
+ df6_group = df6_total.groupby('ZIP CODES')['TOTAL VIOLATIONS'].agg(agg_group)
+ df6_group['RANGE'] = df6_group['MAX'] - df6_group['MIN']
+
+ # Fill in empty or NaN values as 0
+ df6_group = df6_group.fillna(0)
+
+ # Resets index and ZIP CODES is now level 0 column header
+ df6 = df6_group.reset_index()
+
+ # Random colours for graph!
+ N = df6.shape[0]
+ colours = np.random.rand(N)/2
+
+
+ # Turn zip codes into a string 
+ df6_str = df6['ZIP CODES'].astype(str)
+ return df6
+
+
+ # DF6 is the final cleaned, prepped, wrangled DF to use for graphs #
+
 </pre>
 
                     <a class="btn btn-signature btn-signature-karl btn-signature-color"
-                      href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
+                      href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
                       target="new">View Github File</a>
+
 
                   </div>
                 </div>
@@ -214,29 +402,109 @@
             <!-- end: click to tab code -->
 
 
-            <h3 class="font3xblack add-top-quarter">Cleaning the data</h3>
+
+
+
+
+
+
+            <h3 class="font3xblack add-top-quarter">Importing the data</h3>
 
             <p class="grey">
-              On inspection there were lots of multiple variants of words, differing cases, spaces, dashes and extra
-              punchuation. Furthermore, there were 3 different data files needing to be cleaned and merged.
-              Therefore cleaning functions were developed so they can be used multiple times on different datasets and
-              to create consistency amongst the data for easier wrangling. </p>
+              To import cleaned JSON file to do some descriptive statistics Tkinker's openfiledialogue function would
+              allow sourcing of CSV on the system and load it into DataFrame and then return the file location within
+              the input field to report back to user.
+              <Br>
+
+              <!-- start: click to tab code -->
+
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#exportingData" role="button" aria-expanded="false" aria-controls="exportingData">Click For Code
+                </a>
+              </p>
 
 
-            <!-- start: click to tab code -->
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="exportingData">
+                    <div class="card card-body">
+
+                      <pre>
+# ---- EXPORT AS JSON ---- #
+
+def export_json(file, type):
+  try:
+      file_name = input("Please enter a file name you'd like to use:")
+      new_json_name = file_name + ".json"
+      file.to_json(new_json_name, index='true', orient=type) 
+
+  except NameError:
+      print("You have not loaded or cleaned your files to export yet!")
+
+                        </pre>
+
+                      <pre>
+# ----EXPORT TO JSON  ----- #
+
+export_json(df4_cleaned, columns)
+
+print("Congratulations, your data has been clean and exported into the same folder")
+                        </pre>
+
+                      <pre>
+import pandas as pd
+import numpy as np 
+
+columns = 'columns'
+df1_mode =  lambda x:x.value_counts().index[0]
+
+# ---- READING JSON FILE ---- # 
+#  Users/bexa/Documents/Compsci/Advanced Programming/Summative/facilities.json
+
+# ask user for json file location
+enter_json = input ('Please enter the file location of your cleaned JSON file:')
+# read as pandas dataframe
+df1 = pd.read_json(enter_json)
+                        </pre>
+
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Wrangling.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end: click to tab code -->
 
 
-            <p>
-              <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
-                href="#cleaningData" role="button" aria-expanded="false" aria-controls="cleaningData">Click For Code
-              </a>
-            </p>
 
-            <div class="row add-top-quarter">
-              <div class="col">
-                <div class="collapse multi-collapse" id="cleaningData">
-                  <div class="card card-body">
-                    <pre>
+
+              <h3 class="font3xblack add-top-quarter">Cleaning the data</h3>
+
+              <p class="grey">
+                On inspection there were lots of multiple variants of words, differing cases, spaces, dashes and extra
+                punchuation. Furthermore, there were 3 different data files needing to be cleaned and merged.
+                Therefore cleaning functions were developed so they can be used multiple times on different datasets and
+                to create consistency amongst the data for easier wrangling. </p>
+
+
+              <!-- start: click to tab code -->
+
+
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#cleaningData" role="button" aria-expanded="false" aria-controls="cleaningData">Click For Code
+                </a>
+              </p>
+
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="cleaningData">
+                    <div class="card card-body">
+                      <pre>
   # ---- CLEAN FILE ---- #
 
 def clean(df):
@@ -327,90 +595,8 @@ return df
 
 </pre>
 
-                    <a class="btn btn-signature btn-signature-karl btn-signature-color"
-                      href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
-                      target="new">View Github File</a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- end: click to tab code -->
-
-
-
-            <h3 class="font3xblack add-top-quarter">Importing/Exporting the data</h3>
-
-            <p class="grey">
-              The next focus was to reformat/export as a JSON. As the dataset contain over 100,000 isntances JSON file
-              was used
-              because of the low cost of data usage and high parsing speeds. It was decided that all files would be
-              merged into 1 datafile that contained only the useful attributes for the descriptive statistics and
-              visualisations. The rest were
-              removed<br>
-            </p>
-
-            <p class="grey">
-              I needed a way of importing the cleaned JSON file to do some descriptive statistics, selecting only
-              relevent headers to find the mean, median, mode and standard deviation. Therefore the input print function
-              was used again to allow the user to input the dataset file location.
-              <Br>
-
-              <!-- start: click to tab code -->
-
-              <p>
-                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
-                  href="#exportingData" role="button" aria-expanded="false" aria-controls="exportingData">Click For Code
-                </a>
-              </p>
-
-
-              <div class="row add-top-quarter">
-                <div class="col">
-                  <div class="collapse multi-collapse" id="exportingData">
-                    <div class="card card-body">
-
-                      <pre>
-# ---- EXPORT AS JSON ---- #
-
-def export_json(file, type):
-  try:
-      file_name = input("Please enter a file name you'd like to use:")
-      new_json_name = file_name + ".json"
-      file.to_json(new_json_name, index='true', orient=type) 
-
-  except NameError:
-      print("You have not loaded or cleaned your files to export yet!")
-
-                        </pre>
-
-                      <pre>
-# ----EXPORT TO JSON  ----- #
-
-export_json(df4_cleaned, columns)
-
-print("Congratulations, your data has been clean and exported into the same folder")
-                        </pre>
-
-                      <pre>
-import pandas as pd
-import numpy as np 
-
-columns = 'columns'
-df1_mode =  lambda x:x.value_counts().index[0]
-
-# ---- READING JSON FILE ---- # 
-#  Users/bexa/Documents/Compsci/Advanced Programming/Summative/facilities.json
-
-# ask user for json file location
-enter_json = input ('Please enter the file location of your cleaned JSON file:')
-# read as pandas dataframe
-df1 = pd.read_json(enter_json)
-                        </pre>
-
                       <a class="btn btn-signature btn-signature-karl btn-signature-color"
-                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Wrangling.ipynb"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
                         target="new">View Github File</a>
 
                     </div>
@@ -419,6 +605,20 @@ df1 = pd.read_json(enter_json)
               </div>
 
               <!-- end: click to tab code -->
+
+
+
+              <h3 class="font3xblack add-top-quarter">Exporting the data</h3>
+
+              <p class="grey">
+                The next focus was to reformat/export as a JSON. As the dataset contain over 100,000 isntances JSON file
+                was used
+                because of the low cost of data usage and high parsing speeds. It was decided that all files would be
+                merged into 1 datafile that contained only the useful attributes for the descriptive statistics and
+                visualisations. The rest were
+                removed<br>
+              </p>
+
 
 
 
@@ -500,144 +700,306 @@ print(df2_1)
 
 
 
-              <h3 class="font3xblack add-top-quarter">Designing The GUI</h3>
+
+
+              <h3 class="font3xblack add-top-quarter">Status Bar / Messaging</h3>
 
               <p class="grey">
-                The client needed a way to input the datafiles visually and clean the data therefore using input fields,
-                upload files dialog and buttons was best practise to minimise errors and reduce complication of entering incorrect data. This way the user will only be able to select from given options and load files available on the desktop.
-
-              </p>
-
-              <p class="add-bottom">
-              <img src="images/project/clean-tool.jpg" class="col-md-6 img-responsive">
-
-              <img src="images/project/clean-tool-1.jpg" class="col-md-6 img-responsive">
-              </p>
-
-              <p class="grey">
-                After initial wireframes drawn. Feedback showed that more input fields needed to be added for the
-                different data files to make it more intuitive for the end user to know which needed to uploaded and
-                where.
-
-                Furthermore, buttons to load the different functions like clean and export made sense so the user had
-                more control. A status bar, that would show green message to verify and red message to denote errors, was also later added to provide continuous feedback to user. 
-              
-
-
-               <div class="add-bottom">
-                <img src="images/project/wrangling-tool.png" class="img-responsive">
-
-                <img src="images/project/graph-tool.png" class="img-responsive">
-
-               </div>
-
-              </p>
-
-          
-
- 
-              <h3 class="font3xblack add-top-quarter">Intergrating Tkinter GUI</h3>
-              <p class="grey">
-                Tkinter provides a variety of widgets that I needed such as labels, buttons, input fields and checkboxes which were in the GUI wireframes. Furthermore Tkinker has a file dialogue function that can pop-up on click to source files, close the window, provide extra window functionality options. It also was the fastest way to implement the program with a GUI to create a prototype test.
+                The design should always keep users informed about what is going on, through appropriate feedback
+                therefore a status bar was implemented. Initially the design was to add it to the top but it was changed
+                due to research found a lot of applications consider it as secondary in hierarchy to the functions like
+                in Microsoft Word thus placed at the bottom.
               </p>
 
               <!-- start: click to tab code -->
 
-<p>
-  <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
-    href="#dataCleaning" role="button" aria-expanded="false" aria-controls="dataCleaning">Click For Code
-  </a>
-</p>
-            
-
-          <div class="row add-top-quarter">
-              <div class="col">
-                <div class="collapse multi-collapse" id="dataCleaning">
-                  <div class="card card-body">
-                    <pre>
-import tkinter as tk
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt 
-import matplotlib.cbook as cbook
-import json, os
-from tkinter import ttk
-from tkinter import *
-from tkinter.filedialog import asksaveasfile 
-from tkinter.filedialog import asksaveasfilename
-from tkinter import filedialog
-from tkinter import messagebox
-from datetime import datetime
-
-# ------ GLOBAL VARIABLES ------ #
-
-# Change missing values to NaN for consistency
-missing_values = ["NA", "N/A", "na", r"^\s*$", "", " ", "NaN"]
-# counts value then finds the one that appears the most time (mode)
-df1_mode =  lambda x:x.value_counts().index[0]
-# Changes to true once file clean has been done at least once
-file_cleaned = False
-# creating instance of Tk class
-window = tk.Tk()
-window.title("DATA ANALYSIS TOOL")
-
-# disable windows from resizing
-window.resizable(False, False)  
-
-# window sizing
-window_height = 450
-window_width = 500
-screen_width = window.winfo_screenwidth()
-screen_height = window.winfo_screenheight()
-
-# Places window in middle of screen
-x_cordinate = int((screen_width/2) - (window_width/2))
-y_cordinate = int((screen_height/2) - (window_height/2))
-window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#guiStatus" role="button" aria-expanded="false" aria-controls="guiStatus">Click For Code
+                </a>
+              </p>
 
 
-# Adding Tabs to window 
-tab_control = ttk.Notebook(window)
-cleaning_tab = ttk.Frame(tab_control)
-graph_tab = ttk.Frame(tab_control)
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="guiStatus">
+                    <div class="card card-body">
+                      <pre>
 
-# Adding text to tab and styling 
-tab_control.add(cleaning_tab, text="1. Clean Data")
-tab_control.add(graph_tab, text="2. Generate Graph")
-tab_control.pack(expand=1, fill="both")
-                      
+# ----- STATUS BAR ---- #
+status_text = StringVar(window)
+status_text.set("[TIP] Please load your files by clicking the browse button(s).")
+status_bar = Label(window, textvariable=status_text, bd=1, relief=tk.SUNKEN, font=('Helvetica', 12, 'normal'))
+status_bar.configure(foreground='green')
+status_bar.pack(side=BOTTOM, fill=X)
+status_bar.config(background='#F9F9F9', relief = RAISED, height = 2)
+                                  </pre>
 
-</pre>
-
-<a class="btn btn-signature btn-signature-karl btn-signature-color"
-href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb" target="new">View Github File</a>
+                      <pre>
 
 
+# ---- STATUS MESSAGES ---- #
+
+ 
+def status_preparing():
+    status_bar.configure(foreground='green')
+    status_text.set("[STATUS] Preparing to clean loaded files...")
+
+def status_cleaned():
+    status_bar.configure(foreground='green')
+    status_text.set("[SUCCESS] You have cleaned the files now please export/save the file!")
+
+def status_exported():
+    status_text.set("[SUCCESS[ You have exported your new data files!")
+    status_bar.configure(foreground='green')
+
+
+def status_okay():
+    status_bar.configure(foreground='green')
+    status_text.set("[SUCCESS] all files cleaned!")
+
+def error_files():
+    status_bar.configure(foreground='red')
+    status_text.set('[ERROR] There is a problem with your file(s) please check before exporting!')
+    print("There is a problem with your files please check before exporting!")
+
+def status_illegal():
+    status_bar.configure(foreground='red')
+    status_text.set('[ERROR] You have just commited an illegal actiob')
+    print("You have not loaded or cleaned your files to export yet!")
+
+def error_location():
+    status_bar.configure(foreground='red')
+    status_text.set('[ERROR] Please load valid location for the data file by clicking browse.')
+
+                                  </pre>
+
+
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- end: click to tab code -->
-
-              
+              <!-- end: click to tab code -->
 
 
 
 
-</article>
 
-<article class="col-md-4">
-  <ul class="project-spec signature-karl">
-    <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
-    <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
+
+
+              <h3 class="font3xblack add-top-quarter">Data Cleaning Tool</h3>
+
+              <p class="grey">
+                The client needed a way to input the datafiles visually and clean the data therefore using input fields,
+                upload files dialog and buttons was best practise to minimise errors and reduce complication of entering
+                incorrect data. This way the user will only be able to select from given options and load files
+                available on the desktop.
+
+              </p>
+
+
+              <p>
+                <img src="images/project/wrangling-tool.png" class="col-md-10" style="display: block; margin: auto;">
+
+              </p>
+
+              <!-- start: click to tab code -->
+
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#guiClean" role="button" aria-expanded="false" aria-controls="guiClean">Click For Code
+                </a>
+              </p>
+
+
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="guiClean">
+                    <div class="card card-body">
+                      <pre>
+# ------ TAB 1: CLEANING CONTENTS ------ #
+
+# Adding text label
+ttk.Label(cleaning_tab, text="Inventory File", style="STD.Label").grid(row= 1, column=0, padx=10, pady=10, sticky=W)
+ttk.Label(cleaning_tab, text="Violations File", style="STD.Label").grid(row= 2, column=0, padx=10, pady=10, sticky=W)
+ttk.Label(cleaning_tab, text="Inspections File", style="STD.Label").grid(row= 3, column=0, padx=10, pady=10, sticky=W)
+ttk.Label(cleaning_tab, text="Ouput File Name", style="STD.Label").grid(row=4, column=0, padx=10, pady=25, sticky=W)
+ttk.Label(cleaning_tab, text="Please upload your data (.csv) files to be cleaned",
+ style='STD.Label').grid(row=0, column=0, columnspan=3, padx=10, pady=30)
+
+# Adding input fields to cleaning_tab
+input_inventory = ttk.Entry(cleaning_tab)
+input_violations = ttk.Entry(cleaning_tab)
+input_inspections = ttk.Entry(cleaning_tab)
+input_filename = ttk.Entry(cleaning_tab)
+
+# Position of input fields
+input_inventory.grid(row=1, column=1, padx=5, pady=0)
+input_violations.grid(row=2, column=1, padx=5, pady=0)
+input_inspections.grid(row=3, column=1, padx=5, pady=0)
+input_filename.grid(row=4, column=1, padx=0, pady=0)
+
+# File Browse Buttons
+btn_browse1 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file1())
+btn_browse2 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file2())
+btn_browse3 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file3())
+# Browse button layout  
+btn_browse1.grid(row=1, column=2)
+btn_browse2.grid(row=2, column=2)
+btn_browse3.grid(row=3, column=2)
+# btn_save_json.grid(row=4, column=2)
+
+# Action Buttons
+btn_save = ttk.Button(cleaning_tab, text="Save As", command= lambda:save())
+btn_clean = ttk.Button(cleaning_tab, text="Clean & Export", command= lambda:clean_files())
+btn_close = ttk.Button(cleaning_tab, text="Close", command=exit)
+# Action button layout
+btn_clean.grid(row=5, column=1)
+btn_save.grid(row=5, column=0, sticky=E, pady=20)
+btn_close.grid(row=5, column=2, sticky=W)
+
+</pre>
+
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end: click to tab code -->
+
+
+              <h3 class="font3xblack add-top-quarter">Data Visualisation Tool</h3>
+
+              <p class="grey">
+                The client needed a tool to generate visualisations from the prepared dataset and a way to manipulate
+                the values to change the visualisation. Therefore Matplotlib library was intergrated in Tkinter and
+                Pandas to generate graphs. The Tkinter library provided UI like check list and slider which solved the
+                need to manipulate the values.
+              </p>
+
+
+              <p>
+                <img src="images/project/graph-tool.png" class="col-md-10" style="display: block; margin: auto;">
+
+              </p>
+
+              <!-- start: click to tab code -->
+
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#guiVisualise" role="button" aria-expanded="false" aria-controls="guiVisualise">Click For Code
+                </a>
+              </p>
+
+
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="guiVisualise">
+                    <div class="card card-body">
+                      <pre>
+# ------ TAB 2: GRAPH CONTENTS ------ #
+
+
+ttk.Label(graph_tab, text="Upload your cleaned data file to produce graphs for analysis", style='STD.Label').grid(row=0, column=0, columnspan=3, padx=10, pady=20)
+
+
+# 1) Upload data file 
+
+ttk.Label(graph_tab, text="Cleaned Data File", style='STD.Label').grid(row=1, column=0, padx=10, pady=10, sticky=W)
+
+
+# Adding input fields to graph_tab
+input_graph = ttk.Entry(graph_tab)
+# Position of input fields
+input_graph.grid(row=1, column=1, sticky=W)
+
+# Browse button 
+btn_graph_browse = ttk.Button(graph_tab, text="Browse", command = lambda:open_file4())
+btn_graph_browse.grid(row=1, column=2, sticky=W)
+
+
+# 2) Select graphs 
+
+ttk.Label(graph_tab, text="Select the visualisations you would like to generate", style="STD.Label").grid(row= 2, column=0, padx=10, pady=10, sticky=W, columnspan=3)
+
+
+# Check boxes
+v_seat = tk.IntVar()
+v_zip = tk.IntVar()
+graph1 = tk.IntVar()
+graph2 = tk.IntVar()
+graph3 = tk.IntVar()
+graph4 = tk.IntVar()
+
+# Seating Table
+check_seat=Checkbutton(graph_tab,text="Seating Stats", variable=v_seat, onvalue=1, offvalue=0, background='#ececec')
+check_seat.grid(row=3,column=0, sticky=W,columnspan=2,  padx=5, pady=5)
+
+# Zip Codes Table
+check_zip=Checkbutton(graph_tab,text="Zip Code Stats(Terminal)", variable=v_zip, onvalue=1, offvalue=0, background='#ececec')
+check_zip.grid(row=3,column=1, sticky=W)
+
+
+# Total violations per code
+check_total=Checkbutton(graph_tab,text="Total Violations For Each Violation Code", variable=graph1, onvalue=1, offvalue=0, background='#ececec')
+check_total.grid(row=4,column=0, sticky=W, columnspan=3, padx=5)
+
+
+# Remove values between + Slider
+ttk.Label(graph_tab, text="Delete values below", style="STD.Label", foreground="#777777").grid(row= 5, column=0, padx=10, sticky=W)
+# Add slider so they dont enter wrong values
+# max_violation = df4_cleaned['TOTAL VIOLATIONS'].agg('max')
+slider_max = Scale(graph_tab, from_=0, to=1000, orient=HORIZONTAL, bg = "#ececec", length=200)
+slider_max.grid(row=5, column=1, columnspan=2, sticky=W, padx=5)
+
+check_zip=Checkbutton(graph_tab, text="Total Violations Per Zip Code", variable=graph2, onvalue=1, offvalue=0, background='#ececec')
+check_zip.grid(row=6,column=0, sticky=W, columnspan=3,  padx=5)
+
+check_facility=Checkbutton(graph_tab,text="Total Facilities vs. Total Violations", variable=graph3, onvalue=1, offvalue=0, background='#ececec')
+check_facility.grid(row=7,column=0, sticky=W, columnspan=3,  padx=5)
+
+check_facility=Checkbutton(graph_tab,text="Standard Deviation, Range, Totals Comparison", variable=graph4, onvalue=1, offvalue=0, background='#ececec')
+check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
+
+            
+            </pre>
+
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end: click to tab code -->
+
+
+
+
+          </article>
+
+          <article class="col-md-4">
+            <ul class="project-spec signature-karl">
+              <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
+              <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
               <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
                   Tkinter, Matplotlib</span></li>
             </ul>
             <a class="btn btn-signature btn-signature-karl btn-signature-color"
               href="https://github.com/LoveBexa/data-cleaning-tool" target="new">Github Repo</a>
           </article>
-          
+
         </div>
       </section>
 
