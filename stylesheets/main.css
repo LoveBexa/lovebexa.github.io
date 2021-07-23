@@ -541,7 +541,7 @@ section.mastwrap.signature-karl {
   font-size: 34px;
   float: right;
   margin-left: 20px;
-  cursor: url('../images/zoom.png'), auto;	
+  cursor: url('../images/zoom-cursor.png'), auto;	
 
 }
 
@@ -604,7 +604,7 @@ section.mastwrap.signature-karl {
 }
 
 .info a:hover {
-  cursor: url("../images/plus.png") 40 40, crosshair;
+  cursor: url("../images/plus.png"), auto;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -612,8 +612,8 @@ section.mastwrap.signature-karl {
   transition: all .4s ease-in-out;
 }
 
-.zoom a:hover {
-  cursor: url("../images/zoom.png") 40 40, crosshair;
+.zoom-cursor a:hover {
+  cursor: url("../images/zoom-cursor.png"), auto;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -1237,7 +1237,7 @@ a {
 
 a:hover {
   color: #00f1d5;
-  cursor: url('../images/zoom.png'), auto;	
+  cursor: url('../images/zoom-cursor.png'), auto;	
 }
 
 ::selection {
@@ -1387,3 +1387,5 @@ p {
 /* ul.main-menu a{
 background:#111111;
 } */
+
+/* CODE */
