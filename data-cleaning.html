@@ -142,14 +142,12 @@
           <article class="col-md-8">
             <p class="grey">
               This is a prototype application built in Python with a GUI built in Tkinker to prompt user to load a
-              dataset, clean it and then export it as a JSON. The GUI was built to make it easier to wrangle data ready
-              to load for visualiations.
-              <br>
+              dataset, clean it and then export it as a JSON. The GUI was built to make it easier for non-coders to wrangle data ready
+              to load for visualisations.
               The client initially needed the program to generate the mean, mode and median for the inspection score per
               year for each type of vendor’s seating and for each ‘zip code’ therefore these functions were built into
-              the visualiation tool.<br>
-              Furthermore, the client wanted a way to save/export the cleaned data file and generated visualisations
-              with the ability to enter the name of the file.
+              the visualisation tool.
+              Furthermore, the client wanted a way to save/export the cleaned data file and visualisations.
             </p>
 
             <h3 class="font3xblack add-top-quarter">Overview</h3>
@@ -205,10 +203,8 @@
             <h3 class="font3xblack add-top-quarter">Intergrating Tkinter GUI</h3>
             <p class="grey">
               Tkinter provides a variety of widgets that I needed such as labels, buttons, input fields and checkboxes
-              which were in the GUI wireframes. Furthermore Tkinker has a file dialogue function that can pop-up on
-              click to source files, close the window, provide extra window functionality options. I was also able to
-              customise the style of the app and it was the fastest way to implement the program with a GUI to create a
-              prototype test.
+              which were in the GUI wireframes thus was chosen to build this prototype. Furthermore the built in file dialogue function created a pop-up on
+              click to source the files, load it, close the program and also provide extra functionality options. I was also able to customise the style of the app which made it faster to implement the program with a GUI to create a prototype to test the code.
             </p>
 
             <!-- start: click to tab code -->
@@ -1204,6 +1200,34 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
 
 
 
+
+              <h3 class="font3xblack add-top-quarter">Visualisation Outcome</h3>
+
+              <p class="grey">
+                4 graphs are produced using this tool to plot graphs using Matplotlib. In the GUI you are able to check which ones to show and what values to delete.
+              </p>
+
+              <img src="images/project/total-violation-facility.png" class="img-responsive">
+              <img src="images/project/total-violation-zipcode.png" class="img-responsive">
+              <img src="images/project/total-violation.png" class="img-responsive">
+              <img src="images/project/total-zipcodes.png" class="img-responsive">
+
+
+              <h3 class="font3xblack add-top-quarter">Reflection</h3>
+
+              <p class="grey">
+                There were many things I wanted to add for this prototype that I did not add due to time constraints this included concurrency as the application lagged when datafiles were being loaded into the GUI.<Br>
+                  Furthermore, the visualisations encountered some issues with X and Y data point visibility as there was too many instances. One solution would be to spit data into quarters, create wider graphs or binning a range of values which may reduce the observation issues.
+              </p>
+
+              <p class="grey">
+                Next steps... would be to build a tool that can accept a more generic dataset as this one was catered towards the specific dataset given.
+              </p>
+
+
+
+
+
           </article>
 
           <article class="col-md-4">
@@ -1265,8 +1289,8 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
         </div>
         <div class="row">
           <article class="credits col-md-12  text-center">
-            <p class="font3 dark">Website Made With &hearts; By <a target="_blank" href="about.html">Becky Liu</a>.</p>
-          </article>
+            <p class="font3 dark">Website Built With  &hearts; By <a target="_blank"
+              href="about.html">Becky Liu</a>.</p>          </article>
         </div>
 
 

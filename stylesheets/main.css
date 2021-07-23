@@ -26,6 +26,7 @@
 html,
 body {
   overflow-x: hidden;
+  cursor: url('../images/plus.png'), auto;	
 
 }
 
@@ -395,6 +396,34 @@ section.mastwrap.signature-karl {
 }
 
 /*SINGLE PROJECT*/
+
+.project-select {
+  display:block;
+  border-radius:0px;
+  background: none;
+  padding:0% 2% 5% 3%;
+  border: 4px solid white;
+  -webkit-box-shadow: 10px 10px 0px -1px white; 
+  box-shadow: 10px 10px 0px -1px white;
+  -webkit-transition: all .4s linear;
+  -moz-transition: all .4s linear;
+  -ms-transition: all .4s linear;
+  -o-transition: all .4s linear;
+  transition: all .4s linear;
+}
+
+.project-select:hover {
+ border-color: black;
+ -webkit-box-shadow: 10px 10px 0px -1px #00F1D5; 
+ box-shadow: 10px 10px 0px -1px #00F1D5;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+  color: #00F1D5;
+}
+
 .project-title.signature-karl h1 {
   font-size: 32px;
   line-height: 25px;
@@ -512,6 +541,8 @@ section.mastwrap.signature-karl {
   font-size: 34px;
   float: right;
   margin-left: 20px;
+  cursor: url('../images/zoom.png'), auto;	
+
 }
 
 .works-filter.signature-karl {
@@ -825,7 +856,6 @@ textarea {
 }
 
 input.send_message {
-  cursor: pointer;
   float: left;
   font-size: 12px;
   font-weight: 400;
@@ -1149,7 +1179,7 @@ fieldset h1 {
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .color {
-  color: #00f1d5;
+  color: #00f1d5 !important;
 }
 
 .white {
@@ -1161,7 +1191,7 @@ fieldset h1 {
 }
 
 .grey {
-  color: #999999;
+  color: #7d7d7d;
 }
 
 .dark {
@@ -1207,6 +1237,7 @@ a {
 
 a:hover {
   color: #00f1d5;
+  cursor: url('../images/zoom.png'), auto;	
 }
 
 ::selection {
