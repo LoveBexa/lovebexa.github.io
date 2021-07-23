@@ -141,14 +141,14 @@
         <div class="row">
           <article class="col-md-8">
             <p class="grey">
-              This is a prototype application with a GUI for better usability. It is intergrated with a GUI to make it easier to clean, wrangle, combines and reformats multiple .csv files into JSON ready to use for visualisation. 
+              This is a prototype application built in Python with a GUI built in Tkinker to prompt user to load a
+              dataset, clean it and then export it as a JSON. The GUI was built to make it easier to wrangle data ready
+              to load for visualiations.
               <br>
               The client initially needed the program to generate the mean, mode and median for the inspection score per
-              year for each type of vendor’s seating and for each ‘zip code’.
-
-              <img src="images/project/graph-tool.png" class="col-md-6 img-responsive">
-              <img src="images/project/wrangling-tool.png" class="col-md-6 img-responsive">
-
+              year for each type of vendor’s seating and for each ‘zip code’ therefore these functions were built into
+              the visualiation tool.<br>
+              Furthermore, the client wanted a way to save the cleaned file and enter their own file name.
             </p>
 
             <h3 class="font3xblack add-top-quarter">Overview</h3>
@@ -431,20 +431,20 @@ df1 = pd.read_json(enter_json)
                 median,
                 mode and standard deviation.</p>
 
-                <!-- start: click to tab code -->
+              <!-- start: click to tab code -->
 
-<p>
-  <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
-    href="#descStats" role="button" aria-expanded="false" aria-controls="descStats">Click For Code
-  </a>
-</p>
-            
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#descStats" role="button" aria-expanded="false" aria-controls="descStats">Click For Code
+                </a>
+              </p>
 
-          <div class="row add-top-quarter">
-              <div class="col">
-                <div class="collapse multi-collapse" id="descStats">
-                  <div class="card card-body">
-                    <pre>
+
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="descStats">
+                    <div class="card card-body">
+                      <pre>
 # ---- SEATING MEAN, MEDIAN, MODE SCORE ----- #
 
 # making grouped by activity date first, then seating
@@ -487,9 +487,131 @@ print(df2_1)
 
 </pre>
 
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/wrangling.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end: click to tab code -->
+
+
+
+              <h3 class="font3xblack add-top-quarter">Designing The GUI</h3>
+
+              <p class="grey">
+                The client needed a way to input the datafiles visually and clean the data therefore using input fields,
+                upload files dialog and buttons was best practise to minimise errors and reduce complication of entering incorrect data. This way the user will only be able to select from given options and load files available on the desktop.
+
+              </p>
+
+              <p class="add-bottom">
+              <img src="images/project/clean-tool.jpg" class="col-md-6 img-responsive">
+
+              <img src="images/project/clean-tool-1.jpg" class="col-md-6 img-responsive">
+              </p>
+
+              <p class="grey">
+                After initial wireframes drawn. Feedback showed that more input fields needed to be added for the
+                different data files to make it more intuitive for the end user to know which needed to uploaded and
+                where.
+
+                Furthermore, buttons to load the different functions like clean and export made sense so the user had
+                more control. A status bar, that would show green message to verify and red message to denote errors, was also later added to provide continuous feedback to user. 
+              
+
+
+               <div class="add-bottom">
+                <img src="images/project/wrangling-tool.png" class="img-responsive">
+
+                <img src="images/project/graph-tool.png" class="img-responsive">
+
+               </div>
+
+              </p>
+
+          
+
+ 
+              <h3 class="font3xblack add-top-quarter">Intergrating Tkinter GUI</h3>
+              <p class="grey">
+                Tkinter provides a variety of widgets that I needed such as labels, buttons, input fields and checkboxes which were in the GUI wireframes. Furthermore Tkinker has a file dialogue function that can pop-up on click to source files, close the window, provide extra window functionality options. It also was the fastest way to implement the program with a GUI to create a prototype test.
+              </p>
+
+              <!-- start: click to tab code -->
+
+<p>
+  <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+    href="#dataCleaning" role="button" aria-expanded="false" aria-controls="dataCleaning">Click For Code
+  </a>
+</p>
+            
+
+          <div class="row add-top-quarter">
+              <div class="col">
+                <div class="collapse multi-collapse" id="dataCleaning">
+                  <div class="card card-body">
+                    <pre>
+import tkinter as tk
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt 
+import matplotlib.cbook as cbook
+import json, os
+from tkinter import ttk
+from tkinter import *
+from tkinter.filedialog import asksaveasfile 
+from tkinter.filedialog import asksaveasfilename
+from tkinter import filedialog
+from tkinter import messagebox
+from datetime import datetime
+
+# ------ GLOBAL VARIABLES ------ #
+
+# Change missing values to NaN for consistency
+missing_values = ["NA", "N/A", "na", r"^\s*$", "", " ", "NaN"]
+# counts value then finds the one that appears the most time (mode)
+df1_mode =  lambda x:x.value_counts().index[0]
+# Changes to true once file clean has been done at least once
+file_cleaned = False
+# creating instance of Tk class
+window = tk.Tk()
+window.title("DATA ANALYSIS TOOL")
+
+# disable windows from resizing
+window.resizable(False, False)  
+
+# window sizing
+window_height = 450
+window_width = 500
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+
+# Places window in middle of screen
+x_cordinate = int((screen_width/2) - (window_width/2))
+y_cordinate = int((screen_height/2) - (window_height/2))
+window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+
+
+# Adding Tabs to window 
+tab_control = ttk.Notebook(window)
+cleaning_tab = ttk.Frame(tab_control)
+graph_tab = ttk.Frame(tab_control)
+
+# Adding text to tab and styling 
+tab_control.add(cleaning_tab, text="1. Clean Data")
+tab_control.add(graph_tab, text="2. Generate Graph")
+tab_control.pack(expand=1, fill="both")
+                      
+
+</pre>
+
 <a class="btn btn-signature btn-signature-karl btn-signature-color"
-href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/wrangling.ipynb"
-target="new">View Github File</a>
+href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb" target="new">View Github File</a>
+
 
                   </div>
                 </div>
@@ -498,29 +620,24 @@ target="new">View Github File</a>
 
             <!-- end: click to tab code -->
 
-
-
-              <h3 class="font3xblack add-top-quarter">Designing The GUI</h3>
-
-              <p class="grey">
-                The client needed a way to input the datafiles visually and clean the data therefore
-
-              </p>
+              
 
 
 
 
-          </article>
-          <article class="col-md-4">
-            <ul class="project-spec signature-karl">
-              <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
-              <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
+</article>
+
+<article class="col-md-4">
+  <ul class="project-spec signature-karl">
+    <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
+    <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
               <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
                   Tkinter, Matplotlib</span></li>
             </ul>
             <a class="btn btn-signature btn-signature-karl btn-signature-color"
               href="https://github.com/LoveBexa/data-cleaning-tool" target="new">Github Repo</a>
           </article>
+          
         </div>
       </section>
 
