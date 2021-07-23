@@ -67,7 +67,7 @@
       <li>
         <a class="sub-collapser" href="index.html">projects</a>
       </li>
-      <li><a href="about.html">about becky</a></li>
+      <li><a href="about.html">about</a></li>
 
       <li><a href="contact.html">say hello</a></li>
     </ul>
@@ -106,11 +106,12 @@
     <div class="valign">
 
       <ul class="main-menu signature-karl">
+
+        <li><a class="main-link font3black" href="about.html">about</a></li>
         <li>
           <a class="main-link font3xblack sub-menu-trigger" href="index.html">projects</a>
         </li>
-        <li><a class="main-link font3xblack" href="about.html">about becky</a></li>
-        <li><a class="main-link font3xblack" href="contact.html">say hello</a></li>
+        <li><a class="main-link font3black" href="http://houseninetytwo.com">blog</a></li>
       </ul>
     </div>
   </nav>
@@ -128,8 +129,7 @@
 
     <div class="inner-wrap container">
       <section class="project-title signature-karl white-bg pad-top-quarter pad-bottom-quarter">
-        <h1 class="font3xblack black">Data Cleaning Tool<span class="font3light dark">A program built in Python to
-            prepare data ready for visualisation </span></h1>
+        <h1 class="font3xblack black">Data Cleaning Tool<span class="font3light dark">A prototype built in Python to prepare data ready for visualisation </span></h1>
         <!-- <br><br><img src="images/works/data-analysis.jpg" width="100%"> -->
 
       </section>
@@ -148,7 +148,8 @@
               The client initially needed the program to generate the mean, mode and median for the inspection score per
               year for each type of vendor’s seating and for each ‘zip code’ therefore these functions were built into
               the visualiation tool.<br>
-              Furthermore, the client wanted a way to save/export the cleaned file and enter their own file name.
+              Furthermore, the client wanted a way to save/export the cleaned data file and generated visualisations
+              with the ability to enter the name of the file.
             </p>
 
             <h3 class="font3xblack add-top-quarter">Overview</h3>
@@ -408,7 +409,7 @@ def w_violation_facility():
 
 
 
-            <h3 class="font3xblack add-top-quarter">Importing the data</h3>
+            <h3 class="font3xblack add-top-quarter">Loading the data</h3>
 
             <p class="grey">
               To import cleaned JSON file to do some descriptive statistics Tkinker's openfiledialogue function would
@@ -431,16 +432,79 @@ def w_violation_facility():
                     <div class="card card-body">
 
                       <pre>
-# ---- EXPORT AS JSON ---- #
+# ----- UPLOAD/BROWSE FOR FILES ----- #
 
-def export_json(file, type):
-  try:
-      file_name = input("Please enter a file name you'd like to use:")
-      new_json_name = file_name + ".json"
-      file.to_json(new_json_name, index='true', orient=type) 
 
-  except NameError:
-      print("You have not loaded or cleaned your files to export yet!")
+# Browse inventory file to upload function
+def open_file1():
+    global df_inventory, status_bar
+
+    try:
+        # Open only CSV
+        file = filedialog.askopenfile(filetypes =[('Data Files', '*.csv')])
+        # Fill in missing value with NaN
+
+        df_inventory = pd.read_csv(file.name,keep_default_na=False, na_values=missing_values)
+
+        input_text = file.name
+        
+        # Update input field with file upload url
+        input_inventory.delete(0, tk.END)
+        input_inventory.insert(0, input_text)
+    except AttributeError:
+        status_bar.configure(foreground='red')
+        status_text.set('[ERROR] Please open a valid location for the Inventory file')
+        print("Please open a valid location for the Inventory file")    
+    
+# Browse violation file to upload function
+def open_file2():
+    global df_violations
+
+    try:
+        file = filedialog.askopenfile(filetypes =[('Data Files', '*.csv')])
+        df_violations = pd.read_csv(file.name,keep_default_na=False, na_values=missing_values)   
+        input_text = file.name
+        # Update input field with file upload url
+        input_violations.delete(0, tk.END)
+        input_violations.insert(0, input_text)
+
+    except AttributeError:
+        status_text.set('Please open a valid location for the Violation file')
+        print("Please open a valid location for the Violation file")    
+
+# Browse inspection file to upload function
+def open_file3(): 
+    global df_inspections
+    try:
+
+        file = filedialog.askopenfile(filetypes =[('Data Files', '*.csv')])
+        df_inspections = pd.read_csv(file.name,keep_default_na=False, na_values=missing_values)
+        input_text = file.name
+
+        # Update input field with file upload url
+        input_inspections.delete(0, tk.END)
+        input_inspections.insert(0, input_text)
+    except AttributeError:
+        print("Please open a valid location for the Inspection file")
+
+
+def open_file4(): 
+    global json_file
+    try:
+
+        file = filedialog.askopenfile(filetypes =[('JSON Files', '*.json')])
+        # change this to file after 
+        json_file = pd.read_json(file)
+        input_text = file.name
+
+        # Update input field with file upload url
+        input_graph.delete(0, tk.END)
+        input_graph.insert(0, input_text)
+        status_text.set('Your JSON file has been loaded.')
+
+    except AttributeError or ValueError:
+        error_location()
+        print("Please open a valid location for the data file")
 
                         </pre>
 
@@ -453,19 +517,22 @@ print("Congratulations, your data has been clean and exported into the same fold
                         </pre>
 
                       <pre>
-import pandas as pd
-import numpy as np 
+# Position of input fields
+input_inventory.grid(row=1, column=1, padx=5, pady=0)
+input_violations.grid(row=2, column=1, padx=5, pady=0)
+input_inspections.grid(row=3, column=1, padx=5, pady=0)
+input_filename.grid(row=4, column=1, padx=0, pady=0)
 
-columns = 'columns'
-df1_mode =  lambda x:x.value_counts().index[0]
-
-# ---- READING JSON FILE ---- # 
-#  Users/bexa/Documents/Compsci/Advanced Programming/Summative/facilities.json
-
-# ask user for json file location
-enter_json = input ('Please enter the file location of your cleaned JSON file:')
-# read as pandas dataframe
-df1 = pd.read_json(enter_json)
+# File Browse Buttons
+btn_browse1 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file1())
+btn_browse2 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file2())
+btn_browse3 = ttk.Button(cleaning_tab, text="Browse", command = lambda:open_file3())
+# Browse button layout  
+btn_browse1.grid(row=1, column=2)
+btn_browse2.grid(row=2, column=2)
+btn_browse3.grid(row=3, column=2)
+# btn_save_json.grid(row=4, column=2)
+                        
                         </pre>
 
                       <a class="btn btn-signature btn-signature-karl btn-signature-color"
@@ -505,93 +572,157 @@ df1 = pd.read_json(enter_json)
                   <div class="collapse multi-collapse" id="cleaningData">
                     <div class="card card-body">
                       <pre>
-  # ---- CLEAN FILE ---- #
 
-def clean(df):
+                        # ---- FIRST CLEAN ---- #
+def generic_clean(df):
 
-# Dropping data with over 50% null to avoid errors 
-print("...10% Dropping empty cells")
-df.dropna(inplace = True) 
+    global file_cleaned
 
-# Replace NaN, missing values etc with 0
-df.fillna(0)
-print("...20% Neatening missing values")
+    # Dropping data with over 50% null to avoid errors 
 
-print("...30% Stripping spaces")
-# Regex finds spaces 2 or more & changes to 1 and strips space before/after 
-df.columns = [col.strip().replace('  ', ' ') for col in df.columns]
+    print("...10% Dropping empty cells")
+    df.dropna(inplace = True) 
 
-print("...40% Converting all to uppercase")
-df.columns = [x.upper() for x in df.columns]
-# print(csv_df.columns) to check if it works :)
+    # Replace NaN, missing values etc with 0
+    df.fillna(0)
+    status_text.set("...20% Neatening missing values")
 
+    status_text.set("...Currently cleaning files please wait")
+    print("...30% Stripping spaces")
+    # Regex finds spaces 2 or more & changes to 1 and strips space before/after 
+    df.columns = [col.strip().replace('  ', ' ') for col in df.columns]
 
-if "PE DESCRIPTION" in df:
-print("...60% Slicing out & cleaning seating column")
-
-
-# Seating numbers only
-new_seat_col = df['PE DESCRIPTION'].str.extract('.*\((.*)\).*') # print(new_seat_col)
-
-# Remove seating numbers leave behind rest
-df['PE DESCRIPTION'] = df['PE DESCRIPTION'].str.replace(r" \(.*\)","") # print(pe_list)
-
-# New headers
-df['SEATING'] = new_seat_col
-
-# Remove Alpha, Commas, Full stop and Spacing
-
-df['SEATING'] = df['SEATING'].str.replace('[a-zA-Z,. ]', '')
-# '/^[a-zA-Z0-9,\.\s]*$/'
-# [a-zA-Z]
-
-if "SCORE" in df:
-print("...70% Converting to correct data types")
-df["SCORE"] = df["SCORE"].apply(np.int64) 
-
-if "ZIP CODES" in df:
-print("...80% Cleaning last bits")
-df["ZIP CODES"] = df["ZIP CODES"].apply(np.int64) 
-# int_df = df["ZIP CODES"].astype(int)
-
-if "ACTIVITY DATE" in df:
-print("...90% Formatting dates")
-df['ACTIVITY DATE'] =  pd.to_datetime(df['ACTIVITY DATE'], format='%m/%d/%Y')
+    print("...40% Converting all to uppercase")
+    df.columns = [x.upper() for x in df.columns]
+    # print(csv_df.columns) to check if it works :)
 
 
-print("...100% Done!")
+    if "PE DESCRIPTION" in df:
+        
+        print("...60% Slicing out & cleaning seating column")
+        # Seating numbers only
+        new_seat_col = df['PE DESCRIPTION'].str.extract('.*\((.*)\).*') # print(new_seat_col)
 
-print(df.head(5))
+        # Remove seating numbers leave behind rest
+        df['PE DESCRIPTION'] = df['PE DESCRIPTION'].str.replace(r" \(.*\)","") # print(pe_list)
 
-# print(df.head(5))
+        # New headers
+        df['SEATING'] = new_seat_col
 
-return df
+        # Remove Alpha, Commas, Full stop and Spacing
 
+        df['SEATING'] = df['SEATING'].str.replace('[a-zA-Z,. ]', '')
+        # '/^[a-zA-Z0-9,\.\s]*$/'
+        # [a-zA-Z]
+        
+    if "SCORE" in df:
+        print("...70% Converting to correct data types")
+        df["SCORE"] = df["SCORE"].apply(np.int64) 
+
+    if "ZIP CODES" in df:
+        print("...80% Cleaning last bits")
+        df["ZIP CODES"] = df["ZIP CODES"].apply(np.int64) 
+        # int_df = df["ZIP CODES"].astype(int)
+
+    if "ACTIVITY DATE" in df:
+        print("...90% Formatting dates")
+        df['ACTIVITY DATE'] =  pd.to_datetime(df['ACTIVITY DATE'], format='%m/%d/%Y')
+
+
+    print("...100%")
+    
+    file_cleaned = True
+
+    print(df.head(5))
+
+    return df
+
+
+# ---- SECOND CLEAN ---- #
 
 def second_clean(df):
+    
+    if "PROGRAM STATUS" in df:
+        print("...30% Removing inactive accounts")
+        df = df[df['PROGRAM STATUS'] != 'INACTIVE']
 
-print("...Implementing a second clean")
+    if "ACTIVITY DATE" in df:
+        status_text.set("...Cleaning data please wait")
+        print("...60% Formatting dates")
+
+        # Turns all dates to Y (YEAR) e.g 2019-02-3 to 2019
+        df['ACTIVITY DATE'] = df['ACTIVITY DATE'].dt.year
+
+    if "SERIAL NUMBER" and "FACILITY ID" in df:
+        print("...90% Drop duplicates")
+        df = df.drop_duplicates(subset=['ACTIVITY DATE', 'FACILITY ID', 'SERIAL NUMBER'], keep='last')
+    
+    status_text.set("...Your data have been cleaned and exported to the same folder!")
+
+    print(df.head(5))
+
+    return df
+
+# ---- CLEAN FILE FUNCTION BUTTON ---- #
+ 
+def clean_files():
+    
+    global df4_cleaned
+
+    status_preparing()
+
+    # Clean & Creating new subset DataFrames
+
+    try: 
+            
+        # Only clean if ALL files are present 
+        if (len(input_inspections.get()) != 0) and (len(input_violations.get()) != 0) and (len(input_inventory.get()) != 0):
+
+            global df1, df2, df3
+            
+            status_okay()
+            # Clean and created subset of inventory
+            clean1 = generic_clean(df_inventory)
+            df1 = pd.DataFrame(clean1, columns=inventory_headers)
+
+            # Subset of violations with new headers (condensed )
+            clean2 = generic_clean(df_violations)
+            df2 = pd.DataFrame(clean2, columns=violation_headers)
+
+            # Subset of inspections condensed new headers 
+            clean3 = generic_clean(df_inspections)
+            df3 = pd.DataFrame(clean3, columns=inspection_headers)
 
 
-if "PROGRAM STATUS" in df:
-print("...30% Removing inactive accounts")
-df = df[df['PROGRAM STATUS'] != 'INACTIVE']
+            # ----MERGE INTO 1 FILE  ----- #
+
+            # merge. common columns = facility id for ZIP CODES
+            df4_merge = pd.merge(df3, df1, how='inner', on='FACILITY ID')
+
+            print(df3, df1, df4_merge.head(10))
+            # merge columns so serial number becomes the violation code 
+            df4_merge2 = pd.merge(df4_merge, df2, how='inner', on='SERIAL NUMBER')
+
+            print(df4_merge2)
+
+            # print("SERIAL df4_merge2: ", df4_merge.loc[df4_merge['SERIAL NUMBER'] == 'DA2FXQNN6'])
+            # df4_merge2 = df4_merge2.pop('SERIAL NUMBER')
+
+            # second clean
+            df4_second = second_clean(df4_merge2)
+            df4_cleaned = df4_second.reset_index(drop=True)
+
+            export_json(df4_cleaned)
 
 
-if "ACTIVITY DATE" in df:
-print("...60% Formatting dates")
-df['ACTIVITY DATE'] =  pd.to_datetime(df['ACTIVITY DATE'], format='%m/%d/%Y')
+        else:
 
-# this returns only the year
-df['ACTIVITY DATE'] = df['ACTIVITY DATE'].dt.year
+            # If 1 or more files not present goes to error
+            error_files()
 
-if "SERIAL NUMBER" and "FACILITY ID" in df:
-print("...90% Drop duplicates")
-df = df.drop_duplicates(subset=['ACTIVITY DATE', 'FACILITY ID', 'SERIAL NUMBER'], keep='last')
 
-print(".. 100% Second clean done!")
-
-return df
+    except NameError:
+        print("There is an issue with one or more of your file uploads, please check them then try again.")
 
 </pre>
 
@@ -620,7 +751,77 @@ return df
               </p>
 
 
+              <!-- start: click to tab code -->
 
+
+              <p>
+                <a class="btn btn-signature btn-signature-karl btn-signature-color" data-toggle="collapse"
+                  href="#exportData" role="button" aria-expanded="false" aria-controls="exportData">Click For Code
+                </a>
+              </p>
+
+              <div class="row add-top-quarter">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="exportData">
+                    <div class="card card-body">
+                      <pre>
+
+# ---- EXPORT TO JSON ---- #
+
+
+def export_json(file):
+
+    global status_bar, new_json_name, file_name
+
+    file_name = "facilities"
+
+    if len(input_filename.get()) != 0:
+        file_name = input_filename.get()
+    else: 
+        file_name = "facilities"
+
+    try:
+        # New json name
+        new_json_name = file_name + ".json"
+        file.to_json(new_json_name, index='true') 
+        status_exported()  
+
+    except NameError:
+        error_files() 
+                        
+                        
+
+</pre>
+
+<pre>
+
+
+# --- EXPORT GRAPHS ----- #
+
+def export_graphs():
+
+    # Build graphs but not show
+    try: 
+        graph_selection()
+        # Export as image
+        graphs.savefig('graphs.png')
+        status_text.set('Your graphs have been exported into the same folder!')
+    except NameError:
+        error_location()
+
+    
+</pre>
+
+                      <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
+                        target="new">View Github File</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- end: click to tab code -->
 
               <h3 class="font3xblack add-top-quarter">Analysing the data</h3>
 
@@ -877,6 +1078,13 @@ btn_close.grid(row=5, column=2, sticky=W)
               <!-- end: click to tab code -->
 
 
+              <p class="grey">
+                It was decided that the two programs would be within the same tool to create a more seamless experience and they would accessed by tabs. Tkinter's layout management function Pack was used to create the tabs then Grid manager was used for the widgets as this helped keep consistency with spacing, layout and visual composition. 
+              </p>
+
+
+
+
               <h3 class="font3xblack add-top-quarter">Data Visualisation Tool</h3>
 
               <p class="grey">
@@ -909,12 +1117,14 @@ btn_close.grid(row=5, column=2, sticky=W)
 # ------ TAB 2: GRAPH CONTENTS ------ #
 
 
-ttk.Label(graph_tab, text="Upload your cleaned data file to produce graphs for analysis", style='STD.Label').grid(row=0, column=0, columnspan=3, padx=10, pady=20)
+ttk.Label(graph_tab, text="Upload your cleaned data file to produce graphs for analysis", 
+style='STD.Label').grid(row=0, column=0, columnspan=3, padx=10, pady=20)
 
 
 # 1) Upload data file 
 
-ttk.Label(graph_tab, text="Cleaned Data File", style='STD.Label').grid(row=1, column=0, padx=10, pady=10, sticky=W)
+ttk.Label(graph_tab, text="Cleaned Data File", style='STD.Label').grid(row=1, 
+column=0, padx=10, pady=10, sticky=W)
 
 
 # Adding input fields to graph_tab
@@ -929,7 +1139,8 @@ btn_graph_browse.grid(row=1, column=2, sticky=W)
 
 # 2) Select graphs 
 
-ttk.Label(graph_tab, text="Select the visualisations you would like to generate", style="STD.Label").grid(row= 2, column=0, padx=10, pady=10, sticky=W, columnspan=3)
+ttk.Label(graph_tab, text="Select the visualisations you would like to generate", 
+style="STD.Label").grid(row= 2, column=0, padx=10, pady=10, sticky=W, columnspan=3)
 
 
 # Check boxes
@@ -941,21 +1152,25 @@ graph3 = tk.IntVar()
 graph4 = tk.IntVar()
 
 # Seating Table
-check_seat=Checkbutton(graph_tab,text="Seating Stats", variable=v_seat, onvalue=1, offvalue=0, background='#ececec')
+check_seat=Checkbutton(graph_tab,text="Seating Stats", variable=v_seat, 
+onvalue=1, offvalue=0, background='#ececec')
 check_seat.grid(row=3,column=0, sticky=W,columnspan=2,  padx=5, pady=5)
 
 # Zip Codes Table
-check_zip=Checkbutton(graph_tab,text="Zip Code Stats(Terminal)", variable=v_zip, onvalue=1, offvalue=0, background='#ececec')
+check_zip=Checkbutton(graph_tab,text="Zip Code Stats(Terminal)", 
+variable=v_zip, onvalue=1, offvalue=0, background='#ececec')
 check_zip.grid(row=3,column=1, sticky=W)
 
 
 # Total violations per code
-check_total=Checkbutton(graph_tab,text="Total Violations For Each Violation Code", variable=graph1, onvalue=1, offvalue=0, background='#ececec')
+check_total=Checkbutton(graph_tab,text="Total Violations For Each Violation Code", 
+variable=graph1, onvalue=1, offvalue=0, background='#ececec')
 check_total.grid(row=4,column=0, sticky=W, columnspan=3, padx=5)
 
 
 # Remove values between + Slider
-ttk.Label(graph_tab, text="Delete values below", style="STD.Label", foreground="#777777").grid(row= 5, column=0, padx=10, sticky=W)
+ttk.Label(graph_tab, text="Delete values below", style="STD.Label", 
+foreground="#777777").grid(row= 5, column=0, padx=10, sticky=W)
 # Add slider so they dont enter wrong values
 # max_violation = df4_cleaned['TOTAL VIOLATIONS'].agg('max')
 slider_max = Scale(graph_tab, from_=0, to=1000, orient=HORIZONTAL, bg = "#ececec", length=200)
@@ -964,10 +1179,12 @@ slider_max.grid(row=5, column=1, columnspan=2, sticky=W, padx=5)
 check_zip=Checkbutton(graph_tab, text="Total Violations Per Zip Code", variable=graph2, onvalue=1, offvalue=0, background='#ececec')
 check_zip.grid(row=6,column=0, sticky=W, columnspan=3,  padx=5)
 
-check_facility=Checkbutton(graph_tab,text="Total Facilities vs. Total Violations", variable=graph3, onvalue=1, offvalue=0, background='#ececec')
+check_facility=Checkbutton(graph_tab,text="Total Facilities vs. 
+Total Violations", variable=graph3, onvalue=1, offvalue=0, background='#ececec')
 check_facility.grid(row=7,column=0, sticky=W, columnspan=3,  padx=5)
 
-check_facility=Checkbutton(graph_tab,text="Standard Deviation, Range, Totals Comparison", variable=graph4, onvalue=1, offvalue=0, background='#ececec')
+check_facility=Checkbutton(graph_tab,text="Standard Deviation, Range, 
+Totals Comparison", variable=graph4, onvalue=1, offvalue=0, background='#ececec')
 check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
 
             
@@ -993,6 +1210,7 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
             <ul class="project-spec signature-karl">
               <li class="font3xblack black">Category / <span class="font3light dark">Application</span></li>
               <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
+              <li class="font3xblack black">Time Taken / <span class="font3light dark">4 Weeks</span></li>
               <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
                   Tkinter, Matplotlib</span></li>
             </ul>
@@ -1047,8 +1265,7 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
         </div>
         <div class="row">
           <article class="credits col-md-12  text-center">
-            <p class="font3 dark">Website Made With &hearts; By <a target="_blank"
-                href="http://wwww.houseninetytwo.com">Becky Liu</a>.</p>
+            <p class="font3 dark">Website Made With &hearts; By <a target="_blank" href="about.html">Becky Liu</a>.</p>
           </article>
         </div>
 
