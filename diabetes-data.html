@@ -141,22 +141,36 @@
         <div class="row">
           <article class="col-md-8">
             <p class="grey">
-              Diabetes accounts for 1 in 4 health care dollars in the U.S., and more than half of that expenditure
-is directly attributed to diabetes. In 2012, an estimated $25 billion was due to 30-day readmissions
-associated with hospitalisation.   Therefore the goal of this data project was to uncover any other factors that may contribute to re-admission and whether we are able to predict 30-day readmission based on this information. If there is potential to greatly reduce readmissions then there would
-be mammoth savings in healthcare costs, reducing adverse outcomes while simultaneously
-improving the health care system. 
+              Diabetes accounts for 1 in 4 health care dollars in the U.S. with 30-day readmission being a huge strain to the system. If we are able to predict re-admission based on specific set of features then we may be able to tackle at-risk patients before relapse.
             </p>
 
-            <h3 class="font3xblack add-top-quarter">Understanding The Data</h3>
+            <h3 class="font3xblack add-top-quarter">Exploring and Cleaning The Data</h3>
+
+        
             <p class="grey">
-              The first step was trying to understand the dataset and what it was showing which required a lot of research into the attributes, meanings and diabetes 
+              The first step was trying to understand the dataset and what it was showing which required research into the attributes, meanings and diabetes disease itself. Some of the attributes like the ICD9 diagnostic  values needed to be binned into the actual names. There was 101,766 instances and 50 attributes.
+              </p>
+
+            <p class="grey">
+              Histogram showed similar shape accross some of the attributes which shows similar distribution of frequency for num_lab_procedures, num_medication and num_procedures. This mean there is possibility these could be related.
+              <br>
+              <img src="./images/project/diabetes-histogram.png" class="img-responsive">This relationship was further exploredwith a scatter graph.<br>
+              <img src="./images/project/diabetes-scatter.png" class="img-responsive"><br>
+              There seemed to be a a weak positive correlation but this was hard to decipher due to overplotting therefore relationship can be further explored using linear regression.
             </p>
 
-            <h3 class="font3xblack add-top-quarter">Descriptive Statistics</h3>
-            <p class="grey">
-              Then pandas was used to quickly gage the size of dataset, formulation of histograms using Matplotlib in Jupyter 
+
+            <p>
+              <a class="btn btn-signature btn-signature-karl btn-signature-color"
+              href="https://github.com/LoveBexa/diabetes-data/blob/main/clean_diabetes.ipynb" target="new">View Jupyter File</a>
             </p>
+
+            <h3 class="font3xblack add-top-quarter">Preparing Data</h3>
+
+        
+            <p class="grey">
+              The first step was trying to understand the dataset and what it was showing which required research into the attributes, meanings and diabetes disease itself. Some of the attributes like the ICD9 diagnostic  values needed to be binned into the actual names. There was 101,766 instances and 50 attributes.
+              </p>
 
             
 
@@ -173,8 +187,7 @@ improving the health care system.
             <ul class="project-spec signature-karl">
               <li class="font3xblack black">Category / <span class="font3light dark">Machine Learning</span></li>
               <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
-              <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
-                  Tkinter, Matplotlib</span></li>
+              <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy, Seaborn, Scikit Learn, Matplotlib</span></li>
             </ul>
             <a class="btn btn-signature btn-signature-karl btn-signature-color"
               href="https://github.com/LoveBexa/diabetes-data" target="new">Github Repo</a>

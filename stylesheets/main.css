@@ -31,7 +31,7 @@ body {
 
 body{
   font-family: 'IBM Plex Mono', monospace;
-  cursor: url('../images/tap.png'), auto;	
+  cursor: url('../images/closed.png'), auto;	
 
 }
 
@@ -542,7 +542,8 @@ section.mastwrap.signature-karl {
   font-size: 34px;
   float: right;
   margin-left: 20px;
-  cursor: url('../images/zoom-cursor.png'), auto;	
+  cursor: url("../images/open.png"), auto;
+
 
 }
 
@@ -605,7 +606,7 @@ section.mastwrap.signature-karl {
 }
 
 .info a:hover {
-  cursor: url("../images/tap.png"), auto;
+  cursor: url("../images/open.png"), auto;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -614,7 +615,7 @@ section.mastwrap.signature-karl {
 }
 
 .zoom-cursor a:hover {
-  cursor: url("../images/zoom-cursor.png"), auto;
+  cursor: url("../images/open.png"), auto;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -1238,7 +1239,7 @@ a {
 
 a:hover {
   color: #00f1d5;
-  cursor: url('../images/zoom-cursor.png'), auto;	
+  cursor: url("../images/open.png"), auto;
 }
 
 ::selection {
