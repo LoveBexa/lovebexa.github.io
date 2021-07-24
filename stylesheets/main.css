@@ -26,12 +26,13 @@
 html,
 body {
   overflow-x: hidden;
-  cursor: url('../images/plus.png'), auto;	
 
 }
 
-body {
+body{
   font-family: 'IBM Plex Mono', monospace;
+  cursor: url('../images/tap.png'), auto;	
+
 }
 
 p {
@@ -604,7 +605,7 @@ section.mastwrap.signature-karl {
 }
 
 .info a:hover {
-  cursor: url("../images/plus.png"), auto;
+  cursor: url("../images/tap.png"), auto;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
   -ms-transition: all .4s ease-in-out;
@@ -1359,7 +1360,7 @@ pre {
 }
 
 .font3light{
-  font-weight: 300;
+  font-weight: 200;
 
 }
 .font3xblack {
@@ -1368,6 +1369,8 @@ pre {
 
 .font3black {
   font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+
 }
 
 .font3bold {
