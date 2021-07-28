@@ -142,10 +142,10 @@
                     </h3>
                   </section> <!-- cd-intro -->
 
-                  <section class="cd-intro">
+                  <div class="cd-intro">
 
                     <a href="BeckyLiu_CV_DataEngineering.pdf" class="btn btn-signature btn-signature-karl btn-signature-color font3black">View Resume</a>
-                  </section>
+                  </div>
 
                 </article>
 
@@ -158,21 +158,31 @@
 
 
       <section class="intro-01 signature-karl">
+
+
         <!-- start: text portfolio -->
         <section id="works-container">
           <div class="container">
-            <div class="row">
 
+            <div id="filter-container">
+              <button class="btn-signature btn-signature-karl btn-signature-color font3black active" onclick="filterSelection('all')">All Projects</button>
+              <button class="btn-signature btn-signature-karl btn-signature-color font3black" onclick="filterSelection('data')"> Data Science</button>
+              <button class="btn-signature btn-signature-karl btn-signature-color font3black" onclick="filterSelection('web')"> Web Development</button>
+              <button class="btn-signature btn-signature-karl btn-signature-color font3black" onclick="filterSelection('app')"> Applications</button>
+              <button class="btn-signature btn-signature-karl btn-signature-color font3black" onclick="filterSelection('tutorial')"> Tutorials</button>
+            </div>
+            
 
-              <div class="col-md-4 pad-bottom-quarter color">
-                  <h3 class="font3xblack add-top-quarter bottom">👩‍⚕️ Behaviour Risk Factor</h3>
-                  <h3 class="font3">Aside from BMI, how much do other factors (if any) contribute to obesity in New York?</h3>
+            <div class="row add-top-quarter">
+              <div class="column col-md-4 pad-bottom-quarter color web">
+                  <h3 class="font3xblack add-top-quarter bottom">🌶 SiChuan Greenwich</h3>
+                  <h3 class="font3">Website design and development built from scratch for Chinese restaurant based in North Greenwich.</h3>
                   <br>[ Project TBC ]
 
               </div>
 
 
-              <div class="col-md-4 pad-bottom-quarter">
+              <div class="column col-md-4 pad-bottom-quarter data">
                 <a href="diabetes-data.html" class="project-select"">
                   <h3 class="dark font3xblack add-top-quarter">🏥 Hospital Readmission</h3>
                   <h3 class="dark font3">Are we able to predict whether a diabetes patient would re-admit to hospital within a 30-day period?</h3>
@@ -181,7 +191,7 @@
                 
               </div>
 
-              <div class="col-md-4 pad-bottom-quarter">
+              <div class="column col-md-4 pad-bottom-quarter app">
                 <a href="data-cleaning.html" class="project-select">
                   <h3 class="dark font3xblack add-top-quarter">📲 Data Cleaning Tool</h3>
                   <h3 class="dark font3">A tool built in <span class="font3xblack">Python</span> using <span class="font3xblack">Tkinter GUI</span> to load, <span class="font3xblack">clean</span>
@@ -191,7 +201,7 @@
 
               </div>
 
-              <div class="col-md-4 pad-bottom-quarter">
+              <div class="column col-md-4 pad-bottom-quarter app">
                 <a href="coin-counter.html" class="project-select">
                   <h3 class="dark font3xblack add-top-quarter">💰 Coin Sorting Tool</h3>
                   <h3 class="dark font3">A coin sorting tool built in <span class="font3xblack">Java</span> with a
@@ -202,7 +212,7 @@
               </div>
 
 
-              <div class="col-md-4 pad-bottom-quarter">
+              <div class="column col-md-4 pad-bottom-quarter tutorial">
                 <a href="https://www.houseninetytwo.com/how-to-use-python-to-extract-keywords-from-sentance-in-dataframe/"
                   target="Extract" class="project-select">
                   <h3 class="dark font3xblack add-top-quarter">🔑 Extract Keywords</h3>
@@ -276,6 +286,8 @@
       <script src="javascripts/libs/bootstrap.min.js"></script>
       <script src="javascripts/libs/animatedheaders.js"></script>
       <script src="javascripts/custom/main.js"></script>
+      <script src="javascripts/custom/filter.js"></script>
+      
 
 </body>
 

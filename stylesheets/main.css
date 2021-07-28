@@ -8,6 +8,7 @@
 - 4. Navigation
 - 5. Pages
 - 6. Utilities
+- 7. Filter
 */
 
 
@@ -1383,8 +1384,38 @@ p {
 }
 
 
-/* ul.main-menu a{
-background:#111111;
-} */
+/* ------------------  7. FILTERS  ---------------- */
+
+/* Center website */
+
+#filter-container {
+margin: auto;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide columns by default */
+  -webkit-animation-timing-function: ease-in-out;
+-moz-animation-timing-function: ease-in-out;
+-o-animation-timing-function: ease-in-out;
+animation-timing-function: ease-in-out;
+
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+
+}
+
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
 
 /* CODE */

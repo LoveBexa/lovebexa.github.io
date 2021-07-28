@@ -129,7 +129,8 @@
 
     <div class="inner-wrap container">
       <section class="project-title signature-karl white-bg pad-top-quarter pad-bottom-quarter">
-        <h1 class="font3xblack black">Hospital Re-Admissions<span class="font3light dark">Predicting 30-Day Readmission For Diabetes Patients</span></h1>
+        <h1 class="font3xblack black">Hospital Re-Admissions<span class="font3light dark">Predicting 30-Day Readmission
+            For Diabetes Patients</span></h1>
         <!-- <br><br><img src="images/works/data-analysis.jpg" width="100%"> -->
 
       </section>
@@ -141,45 +142,113 @@
         <div class="row">
           <article class="col-md-8">
             <p class="grey">
-              Diabetes accounts for 1 in 4 health care dollars in the U.S. with 30-day readmission being a huge strain to the system. If we are able to predict re-admission based on specific set of features then we may be able to tackle at-risk patients before relapse.
+              Diabetes accounts for 1 in 4 health care dollars in the U.S. with 30-day readmission being a huge strain
+              to the system. If we are able to predict re-admission based on specific set of features then we may be
+              able to tackle at-risk patients before relapse.
             </p>
 
             <h3 class="font3xblack add-top-quarter">Exploring The Data</h3>
 
-        
-            <p class="grey">
-              The first step was trying to understand the dataset and what it was showing which required research into the attributes, meanings and diabetes disease itself. There was 101,766 instances and 50 attributes. Considering I wanted to classify based on labelled attributes from the given set supervised learning would be best suited for this project.
-              </p>
 
             <p class="grey">
-              To explore the data quickly I created histograms of each applicable feature which showed similar shape accross some of the attributes which shows similar distribution of frequency for num_lab_procedures, num_medication and num_procedures. This mean there is possibility these could be related if so it would make sense to remove when classifying output variable during supervised learning.
+              The first step was trying to understand the dataset and what it was showing which required research into
+              the attributes, meanings and diabetes disease itself. There was 101,766 instances and 50 attributes.
+              Considering I wanted to classify based on labelled attributes from the given set supervised learning would
+              be best suited for this project.
+            </p>
+
+            <p class="grey">
+              To explore the data quickly I created histograms of each applicable feature which showed similar shape
+              accross some of the attributes. <br>
+              <img src="./images/project/diabetes-histogram.png" class="img-responsive"><br>
+              This showed similar distribution of frequency for num_lab_procedures, num_medication and num_procedures.
+              This mean there is possibility these could be related if so it would make sense to remove when classifying
+              output variable during supervised learning.
+            </p>
+
+            <p class="grey">On further inspection of these histograms it was found that there was an outlier for the
+              number of lab procedures for patients that only stayed for 1 day. This was an odd result as it was also
+              the mode. This may be because the majority of patients stayed 1 day for a check up which is more common
+              than overnight stays. It would be interesting to see how many of those 1 day check ups resulted in 30-day
+              readmission.
               <br>
-              <img src="./images/project/diabetes-histogram.png" class="img-responsive">This relationship between num_lab_procedures and num_medication was further explored using a scatter graph.<br>
+              <img src="./images/project/num-lab-histogram.png" class="img-responsive">
+            </p>
+
+            <p class="grey">
+              The relationship between num_lab_procedures, num_medication and num_procedures was further explored using
+              a scatter graph but seemed to be a a weak positive correlation. Overplotting made it hard to decipher true
+              relationship therefore relationship between two features were explored using linear regression.<br>
               <img src="./images/project/diabetes-scatter.png" class="img-responsive"><br>
-              There seemed to be a a weak positive correlation but this was hard to decipher due to overplotting therefore relationship can be further explored using linear regression.
-              Linear regression produced a result of 0.07 which was also very weak/poor. To improve this result the dataset was checked for missing data, with outliers removed therefore it looked okay to leaving in these non-correlated attributes for classification.
+
+              Linear regression produced a result of 0.07 which was also very weak/poor. To improve this result the
+              dataset was checked for missing data, with outliers removed but results were similar. Therefore it was
+              concluded these features are not correlated and can be used for classifications. <br>
+
             </p>
 
             <h3 class="font3xblack add-top-quarter">Cleaning The Data</h3>
 
-        
+
             <p class="grey">
-              Some of the attributes like the ICD9 diagnostic values needed to be binned into the actual names for clearer and easier analysis after missing values were inspected and it was decided to remove columns with over 50% missing and replace missing values with NaN to avoid distrupting data too much by removing completely. Then case inconsistencies, spaces and random characters were removed.  
-              </p>
-
-            
-
-            <p>
-              <a class="btn btn-signature btn-signature-karl btn-signature-color"
-              href="https://github.com/LoveBexa/diabetes-data/blob/main/clean_diabetes.ipynb" target="new">Jupyter Cleaning File</a>
+              Some of the attributes like the ICD9 diagnostic values needed to be binned into the actual names for
+              clearer and easier analysis after missing values were inspected and it was decided to remove columns with
+              over 50% missing and replace missing values with NaN to avoid distrupting data too much by removing
+              completely. Then name inconsistencies, spaces and random characters were removed.
+              Features with binominal options like True or False and Yes or No were imputed with 0 for False and 1 for
+              True for better Machine Learning. Output variable was also changed to 1 for all re-admissions before 30
+              days and 0 for all patients that weren't re-admitted.
             </p>
 
 
 
-   
+            <p>
+              <a class="btn btn-signature btn-signature-karl btn-signature-color"
+                href="https://github.com/LoveBexa/diabetes-data/blob/main/clean_diabetes.ipynb" target="new">Jupyter
+                Cleaning File</a>
+            </p>
 
 
-            
+            <h3 class="font3xblack add-top-quarter">Feature Selection</h3>
+
+
+            <p class="grey">
+              In order for better Machine Learning features needed to be reduced. Useless attributes can reduce
+              performance of learning schemes and a
+              study on Model Selection Management Systems advised the best process was to use a
+              combination of manual selection, tools and domain knowledge. Due to time constraints and a large number of
+              attributes InfoGainAttribute in WEKA was used in Weka to rank features based on contribution to entropy.
+              The
+              top performing features were kept using Python’s pandas dataframe to create a new subset from.
+              <img src="./images/project/infogain-weka.png" class="img-responsive add-top-quarter">
+            </p>
+
+            <h3 class="font3xblack add-top-quarter">Classification</h3>
+
+
+            <p class="grey">
+              Decision Tree and Naives Bayes showed nearly the same results with Decision Tree performing
+              only slightly better with 88.8% accuracy compared to 88.2% correctly classified instances and
+              0.0002 lower root mean squared error. The results were based on the top 14 features
+              selected in n 10 fold cross-fold. Naive Bayes performed
+              a lot quicker at 0.03 seconds compared to 0.71 seconds it took Decision Tree to learn.
+              <img src="./images/project/naives-bayes-results.png" class="img-responsive add-top-quarter">
+            </p>
+
+
+            <h3 class="font3xblack add-top-quarter">Results</h3>
+
+
+            <p class="grey">
+              On first look the results seem to prove that the chosen
+              attributes indeed did affected the outcome variable with high predictions meaning we are
+              able to predict future patients at risk of re-admission by based on similar parameters. But the high false positive rate suggests the model has incorrectly predicted 30-day readmission for patients who haven't been readmitted. Therefore this model can not be relied on and further research needs to be done.
+            </p>
+
+
+
+
+
 
           </article>
 
@@ -187,7 +256,8 @@
             <ul class="project-spec signature-karl">
               <li class="font3xblack black">Category / <span class="font3light dark">Machine Learning</span></li>
               <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
-              <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy, Seaborn, Scikit Learn, Matplotlib</span></li>
+              <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
+                   Matplotlib, WEKA</span></li>
             </ul>
             <a class="btn btn-signature btn-signature-karl btn-signature-color"
               href="https://github.com/LoveBexa/diabetes-data" target="new">Github Repo</a>
@@ -209,8 +279,7 @@
         <div class="row">
           <article class="col-md-12 text-left no-pad">
             <ul class="project-nav-icon-wrap">
-              <li><a class="ajax-link" href="#"><img data-no-retina alt="" title=""
-                    src="images/prev.svg" /></a></li>
+              <li><a class="ajax-link" href="#"><img data-no-retina alt="" title="" src="images/prev.svg" /></a></li>
               <li><a class="ajax-link" href="index.html"><img data-no-retina alt="" title=""
                     src="images/grid.svg" /></a></li>
               <li><a class="ajax-link" href="data-cleaning.html"><img data-no-retina alt="" title=""
@@ -241,9 +310,8 @@
         </div>
         <div class="row">
           <article class="credits col-md-12  text-center">
-            <p class="font3 dark">Website Built With  &hearts; By <a target="_blank"
-              href="about.html">Becky Liu</a>.</p>
-                      </article>
+            <p class="font3 dark">Website Built With &hearts; By <a target="_blank" href="about.html">Becky Liu</a>.</p>
+          </article>
         </div>
 
 
