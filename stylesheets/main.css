@@ -7,6 +7,7 @@
 - 5. Pages
 - 6. Utilities
 - 7. Filter
+- 8. Animations
 */
 
 
@@ -1174,12 +1175,6 @@ fieldset h1 {
   background-size: cover !important;
 }
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*LESS Compiled to CSS for preview purposes only 
-(Please read PDF guide to manage colors via LESS with just a single line of code editing)*/
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 .color {
   color: #00f1d5 !important;
 }
@@ -1483,3 +1478,6 @@ p {
   -webkit-box-shadow: 0px 0px 0px 0px #00F1D5;
   box-shadow: 0px 0px 0px 0px #00F1D5;
 }
+
+/* ------------------  8. Animations  ---------------- */
+
