@@ -39,22 +39,22 @@ html * {
   }
 }
 
-.cd-intro.signature-karl {
+.cd-intro.becky-portfolio {
   width: 100%;
   max-width: 768px;
   text-align: center;
 }
 
-.cd-intro.signature-karl {
+.cd-intro.becky-portfolio {
     margin: 0 auto;
 }
 @media only screen and (min-width: 768px) {
-  .cd-intro.signature-karl {
+  .cd-intro.becky-portfolio {
     margin: 0 auto;
   }
 }
 @media only screen and (min-width: 1170px) {
-  .cd-intro.signature-karl {
+  .cd-intro.becky-portfolio {
     margin: 0 auto;
   }
 }

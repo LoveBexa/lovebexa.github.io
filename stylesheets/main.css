@@ -83,12 +83,12 @@ a:focus {
   margin-bottom: 10px;
 }
 
-.hero-text.signature-karl h3 {
+.hero-text.becky-portfolio h3 {
   font-size: 48px;
   line-height: 64px;
 }
 
-.hero-text.signature-karl h6 {
+.hero-text.becky-portfolio h6 {
   font-size: 18px;
   line-height: 21px;
 }
@@ -97,9 +97,9 @@ a:focus {
   margin-top: 400px;
 }
 
-.first-fold.signature-karl .main-heading {}
+.first-fold.becky-portfolio .main-heading {}
 
-.first-fold.signature-karl .main-heading.fixed-bottom {
+.first-fold.becky-portfolio .main-heading.fixed-bottom {
   position: absolute;
   bottom: 50%;
 }
@@ -118,7 +118,7 @@ html.preloader-running .sticky-sidebar {
   display: block;
 }
 
-div#preloader.signature-karl {
+div#preloader.becky-portfolio {
   background: none repeat scroll 0 0 white;
   height: 100%;
   left: 0;
@@ -128,7 +128,7 @@ div#preloader.signature-karl {
   z-index: 99999;
 }
 
-div#preloader.signature-karl.fluidview {
+div#preloader.becky-portfolio.fluidview {
   left: 0px;
 }
 
@@ -147,7 +147,7 @@ div#preloader.signature-karl.fluidview {
 
 /* 2. Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-header.masthead.signature-karl {
+header.masthead.becky-portfolio {
   position: fixed;
   width: 100%;
   height: 70px;
@@ -161,7 +161,7 @@ header.masthead.signature-karl {
 /* 3. Footer
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-footer.mastfoot.signature-karl {
+footer.mastfoot.becky-portfolio {
   padding: 50px 0;
 }
 
@@ -218,7 +218,7 @@ footer.mastfoot.signature-karl {
 
 /* 4. Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-nav.mastnav.signature-karl {
+nav.mastnav.becky-portfolio {
   display: none;
   position: fixed;
   top: 0px;
@@ -230,13 +230,13 @@ nav.mastnav.signature-karl {
   text-align: center;
 }
 
-nav.mastnav.signature-karl ul {
+nav.mastnav.becky-portfolio ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-nav.mastnav.signature-karl ul li {
+nav.mastnav.becky-portfolio ul li {
   margin-bottom: 20px;
 }
 
@@ -282,7 +282,7 @@ nav.mastnav.signature-karl ul li {
   flex-direction: column;
 }
 
-section.mastwrap.signature-karl {
+section.mastwrap.becky-portfolio {
   margin-top: 70px;
 
 }
@@ -310,24 +310,24 @@ section.mastwrap.signature-karl {
   margin-right: auto;
 }
 
-.elements-counter-wrap.signature-karl .subject {
+.elements-counter-wrap.becky-portfolio .subject {
   padding: 6px 3px;
   margin-top: 30px;
   font-size: 14px;
 }
 
-.elements-counter.signature-karl {
+.elements-counter.becky-portfolio {
   border-right: none;
 }
 
 /*SERVICES*/
-.services.signature-karl .service-block.signature-karl {}
+.services.becky-portfolio .service-block.becky-portfolio {}
 
-.services.signature-karl .service-block.signature-karl span {
+.services.becky-portfolio .service-block.becky-portfolio span {
   font-size: 72px;
 }
 
-.services.signature-karl .service-block.signature-karl h3 {
+.services.becky-portfolio .service-block.becky-portfolio h3 {
   font-size: 18px;
   line-height: 25px;
   font-weight: normal;
@@ -335,41 +335,41 @@ section.mastwrap.signature-karl {
   margin-top: 20px;
 }
 
-.call-to-action.signature-karl {
+.call-to-action.becky-portfolio {
   padding: 80px;
 }
 
-.call-to-action.signature-karl h3 {
+.call-to-action.becky-portfolio h3 {
   font-size: 24px;
   line-height: 48px;
 }
 
 
 /*JOURNAL*/
-.journal.signature-karl {
+.journal.becky-portfolio {
   padding: 30px;
 }
 
-.journal.signature-karl .news-block.signature-karl {}
+.journal.becky-portfolio .news-block.becky-portfolio {}
 
-.journal.signature-karl .news-block.signature-karl span {
+.journal.becky-portfolio .news-block.becky-portfolio span {
   font-size: 36px;
 }
 
-.journal.signature-karl .news-block.signature-karl h3 {
+.journal.becky-portfolio .news-block.becky-portfolio h3 {
   font-size: 20px;
   line-height: 32px;
   font-weight: normal;
   margin-bottom: 20px;
 }
 
-.journal.signature-karl .news-block.signature-karl h2 {
+.journal.becky-portfolio .news-block.becky-portfolio h2 {
   font-size: 28px;
   line-height: 31px;
   font-weight: normal;
 }
 
-.journal.signature-karl .news-head {
+.journal.becky-portfolio .news-head {
   opacity: 0;
   padding: 80px;
   position: absolute;
@@ -420,21 +420,21 @@ section.mastwrap.signature-karl {
   color: #00F1D5;
 }
 
-.project-title.signature-karl h1 {
+.project-title.becky-portfolio h1 {
   font-size: 32px;
   line-height: 25px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.project-title.signature-karl h1>span {
+.project-title.becky-portfolio h1>span {
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0px;
   text-transform: none;
 }
 
-.project-title.signature-karl h1>span:before {
+.project-title.becky-portfolio h1>span:before {
   font-size: 18px;
   line-height: 25px;
   letter-spacing: 2px;
@@ -443,20 +443,20 @@ section.mastwrap.signature-karl {
   margin-left: 10px;
 }
 
-.project-spec.signature-karl {
+.project-spec.becky-portfolio {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.project-spec.signature-karl li {
+.project-spec.becky-portfolio li {
   padding: 10px 0;
   border-top: solid 1px #eee;
   font-size: 18px;
   line-height: 24px;
 }
 
-.project-spec.signature-karl li:last-child {
+.project-spec.becky-portfolio li:last-child {
   border-bottom: solid 5px #eee;
 }
 
@@ -516,7 +516,7 @@ section.mastwrap.signature-karl {
 
 /*WORKS*/
 
-.works-filter-panel.signature-karl {
+.works-filter-panel.becky-portfolio {
   display: none;
   width: 100%;
   z-index: 9999;
@@ -528,11 +528,11 @@ section.mastwrap.signature-karl {
 
 .works-filter-wrap {}
 
-.filter-notification.signature-karl {
+.filter-notification.becky-portfolio {
   margin-left: 10px;
 }
 
-.filter-notification.signature-karl span,
+.filter-notification.becky-portfolio span,
 .menu-notification span {
   font-size: 34px;
   float: right;
@@ -542,38 +542,38 @@ section.mastwrap.signature-karl {
 
 }
 
-.works-filter.signature-karl {
+.works-filter.becky-portfolio {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.works-filter.signature-karl li {
+.works-filter.becky-portfolio li {
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.works-filter.signature-karl li a {
+.works-filter.becky-portfolio li a {
   font-size: 16px;
   line-height: 23px;
 }
 
-.works-container.signature-karl {
+.works-container.becky-portfolio {
   padding: 0;
   margin: 70px auto 0 auto;
   overflow: hidden;
 }
 
-.works-filter.signature-karl li:last-child:after {
+.works-filter.becky-portfolio li:last-child:after {
   display: none;
 }
 
-.works-item.signature-karl {
+.works-item.becky-portfolio {
   overflow: hidden;
 }
 
-.works-item.signature-karl a {
+.works-item.becky-portfolio a {
   opacity: 0;
   display: block;
   width: 100%;
@@ -590,7 +590,7 @@ section.mastwrap.signature-karl {
   transition: all .4s ease-in-out;
 }
 
-.works-item.signature-karl a:hover {
+.works-item.becky-portfolio a:hover {
   text-decoration: none !important;
   opacity: 1;
   -webkit-transition: all .4s ease-in-out;
@@ -664,9 +664,9 @@ section.mastwrap.signature-karl {
   text-transform: uppercase;
 }
 
-.works-item.signature-karl a:hover .works-item-inner h3 {}
+.works-item.becky-portfolio a:hover .works-item-inner h3 {}
 
-.works-item.signature-karl a:hover .works-item-inner p {}
+.works-item.becky-portfolio a:hover .works-item-inner p {}
 
 .works-item-fade {
   opacity: 0.1;
@@ -1275,15 +1275,15 @@ p {
   background-color: #00f1d5;
 }
 
-nav.mastnav.signature-karl {
+nav.mastnav.becky-portfolio {
   border-color: #ffffff;
 }
 
-.works-filter.signature-karl li a {
+.works-filter.becky-portfolio li a {
   color: #ffffff;
 }
 
-.works-filter.signature-karl li a:hover {
+.works-filter.becky-portfolio li a:hover {
   color: #00f1d5;
 }
 

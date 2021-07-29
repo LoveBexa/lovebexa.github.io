@@ -228,7 +228,7 @@ Licensed under MIT
 
 /* Number Counters */   
   
-  .elements-counter-wrap.signature-karl {
+  .elements-counter-wrap.becky-portfolio {
     opacity: 0;
     display: table;
     margin-left: 0;
@@ -243,7 +243,7 @@ Licensed under MIT
             transition: all .8s linear;
   }
   
-  .elements-counter.signature-karl {
+  .elements-counter.becky-portfolio {
     text-align: center;
     list-style:none;
     display:inline-block;
@@ -259,7 +259,7 @@ Licensed under MIT
     border-right:none;
   }
   
-  .elements-counter.signature-karl .number {
+  .elements-counter.becky-portfolio .number {
     display: block;
     font-size: 64px;
     
@@ -268,7 +268,7 @@ Licensed under MIT
     color:#000;
   }
   
-  .elements-counter.signature-karl .subject {
+  .elements-counter.becky-portfolio .subject {
     font-weight:400;
     font-size:16px;
     letter-spacing:1px;
@@ -501,18 +501,18 @@ Logo by Sneaker-mission.com (http://www.sneaker-mission.com/)
     -webkit-transition: none !important;
     transition: none !important;
 }
-.progress-container.signature-karl h6{
+.progress-container.becky-portfolio h6{
   margin: 10px 0;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-.progress-container.signature-karl h6 > span{
+.progress-container.becky-portfolio h6 > span{
   font-size: 36px;
   line-height: 43px;
 }
-.progress-container.signature-karl h6 > span:before{
+.progress-container.becky-portfolio h6 > span:before{
   content: ' = ';
   font-size: 20px;
   line-height: 27px;

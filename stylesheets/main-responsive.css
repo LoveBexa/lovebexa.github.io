@@ -142,10 +142,10 @@ there.
     .img-responsive {
         display: inline-block;
     }
-    header.masthead.signature-karl{
+    header.masthead.becky-portfolio{
         display: none;
     }
-    section.mastwrap.signature-karl{
+    section.mastwrap.becky-portfolio{
         margin-left: 0;
         margin-top: 50px;
     }
@@ -157,13 +157,13 @@ there.
     .menu-collapser {
         background-image: url("../images/logo.png");
     }
-    .mobile-nav.signature-karl{
+    .mobile-nav.becky-portfolio{
         display: block !important;
     }
-    div#preloader.signature-karl{
+    div#preloader.becky-portfolio{
         left: 0;
     }
-    .filter-notification.signature-karl{
+    .filter-notification.becky-portfolio{
         text-align: center;
         padding-left: 0;
     }
@@ -180,27 +180,27 @@ there.
     .inner-wrap{
         padding: 100px 80px;
     }
-    .first-fold.signature-karl .main-heading{
+    .first-fold.becky-portfolio .main-heading{
         margin-left: 0;
         padding: 0 30px;
     }
-    .elements-counter.signature-karl{ 
+    .elements-counter.becky-portfolio{ 
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
-    .call-to-action.signature-karl{
+    .call-to-action.becky-portfolio{
         padding: 20px;
     }
-    .hero-text.signature-karl h3, .main-heading h1, .elements-counter.signature-karl .number{
+    .hero-text.becky-portfolio h3, .main-heading h1, .elements-counter.becky-portfolio .number{
         font-size: 24px;
         line-height: 31px;
     }
-    .call-to-action.signature-karl h3{
+    .call-to-action.becky-portfolio h3{
         font-size: 18px;
         line-height: 25px;
     }
-    .journal.signature-karl .news-block.signature-karl h3, .project-title.signature-karl h1, .journal.signature-karl .news-block.signature-karl h2,
+    .journal.becky-portfolio .news-block.becky-portfolio h3, .project-title.becky-portfolio h1, .journal.becky-portfolio .news-block.becky-portfolio h2,
     .works-thumbnails-view .works-item-inner p > span, .works-item-inner h3 > span{
         font-size: 14px;
         line-height: 21px;
@@ -239,17 +239,17 @@ there.
           padding: 0 !important;
           width: 31.3% !important;
     }
-    .first-fold.signature-karl .main-heading{
+    .first-fold.becky-portfolio .main-heading{
         padding: 0;
         text-align: center;
     }
     .works-thumbnails-view .works-item-inner{
         padding: 30px;
     }
-    div#preloader.signature-karl{
+    div#preloader.becky-portfolio{
         top: 50px;
     }
-    .journal.signature-karl .news-head{
+    .journal.becky-portfolio .news-head{
         padding: 30px;
     }
 }
@@ -262,7 +262,7 @@ there.
         padding-right: 50px;
     }
 
-    .text-left, .text-right, .mastfoot, .credits, .services-item, .hero-text.signature-karl {
+    .text-left, .text-right, .mastfoot, .credits, .services-item, .hero-text.becky-portfolio {
         text-align: center;
     }
 
@@ -270,7 +270,7 @@ there.
         display: inline-block;
     }
 
-    .mobile-nav.signature-karl {
+    .mobile-nav.becky-portfolio {
         display: block;
     }
     .works-masonry-container .works-item-one-third,
