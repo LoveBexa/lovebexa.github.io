@@ -6,7 +6,7 @@
   <!-- Basic Page Info
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Becky Liu's Portfolio</title>
+  <title>Becky Liu | Data Science Python Engineering Portfolio</title>
   <meta name="description"
     content="Becky Liu's Data Science Portfolio: Data Engineer, Software, Java, Python, Full-Stack, Developer Roles">
   <meta name="author" content="Becky Liu">
@@ -64,10 +64,11 @@
   <!-- mobile only navigation : starts -->
   <nav class="mobile-nav becky-portfolio">
     <ul class="slimmenu">
+      <li><a href="home.html">home</a></li>
+
       <li>
         <a class="sub-collapser" href="index.html">projects</a>
       </li>
-      <li><a href="about.html">about</a></li>
 
       <li><a href="http://www.houseninetytwo.com">blog</a></li>
     </ul>
@@ -107,7 +108,7 @@
 
       <ul class="main-menu becky-portfolio">
 
-        <li><a class="main-link font3black" href="about.html">about</a></li>
+        <li><a class="main-link font3black" href="index.html">home</a></li>
         <li>
           <a class="main-link font3xblack sub-menu-trigger color" href="index.html">projects</a>
         </li>
@@ -227,12 +228,19 @@
 
 
             <p class="grey">
+
               Decision Tree and Naives Bayes showed nearly the same results with Decision Tree performing
               only slightly better with 88.8% accuracy compared to 88.2% correctly classified instances and
-              0.0002 lower root mean squared error. The results were based on the top 14 features
+              0.0002 lower root mean squared error. 
+              The results were based on the top 14 features
               selected in n 10 fold cross-fold. Naive Bayes performed
               a lot quicker at 0.03 seconds compared to 0.71 seconds it took Decision Tree to learn.
-              <img src="./images/project/naives-bayes-results.png" class="img-responsive add-top-quarter">
+              <img src="./images/project/naives-bayes-results.png" class="img-responsive add-top-quarter pad-bottom-quarter">
+              The RMSE were similar for each learning model but Naives Bayes was slightly lower by a margin
+              
+              <img src="./images/project/table-diabete-reusult.png" class="img-responsive add-top-quarter">
+
+
             </p>
 
 
@@ -242,7 +250,9 @@
             <p class="grey">
               On first look the results seem to prove that the chosen
               attributes indeed did affected the outcome variable with high predictions meaning we are
-              able to predict future patients at risk of re-admission by based on similar parameters. But the high false positive rate suggests the model has incorrectly predicted 30-day readmission for patients who haven't been readmitted. Therefore this model can not be relied on and further research needs to be done.
+              able to predict future patients at risk of re-admission by based on similar parameters. But the high false
+              positive rate suggests the model has incorrectly predicted 30-day readmission for patients who haven't
+              been readmitted. Therefore this model can not be relied on and further research needs to be done.
             </p>
 
 
@@ -257,7 +267,7 @@
               <li class="font3xblack black">Category / <span class="font3light dark">Machine Learning</span></li>
               <li class="font3xblack black">Language / <span class="font3light dark">Python</span></li>
               <li class="font3xblack black">Tools / <span class="font3light dark">Jupyter Notebooks, Pandas, Numpy,
-                   Matplotlib, WEKA</span></li>
+                  Matplotlib, WEKA</span></li>
             </ul>
             <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
               href="https://github.com/LoveBexa/diabetes-data" target="new">Github Repo</a>

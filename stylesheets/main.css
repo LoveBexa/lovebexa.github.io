@@ -1448,7 +1448,6 @@ p {
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
-  width: 33.33%;
   display: none;
   /* Hide columns by default */
   -webkit-animation: fadeOut 1.2s;
@@ -1470,4 +1469,15 @@ p {
   display: block;
   -webkit-animation: fadeIn 1.2s;
   animation: fadeIn 1.2s;
+}
+
+.btn-signature.active {
+
+
+  background-color: #ffd155;
+  color: #292929 !important;
+
+  border: 2px solid black;
+  -webkit-box-shadow: 0px 0px 0px 0px #00F1D5;
+  box-shadow: 0px 0px 0px 0px #00F1D5;
 }

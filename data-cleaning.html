@@ -6,7 +6,7 @@
   <!-- Basic Page Info
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Becky Liu's Portfolio</title>
+  <title>Becky Liu | Data Science Engineering Python Development Portfolio</title>
   <meta name="description"
     content="Becky Liu's Data Science Portfolio: Data Engineer, Software, Java, Python, Full-Stack, Developer Roles">
   <meta name="author" content="Becky Liu">
@@ -64,12 +64,13 @@
   <!-- mobile only navigation : starts -->
   <nav class="mobile-nav becky-portfolio">
     <ul class="slimmenu">
-      <li>
-        <a class="sub-collapser" href="index.html">projects</a>
-      </li>
-      <li><a href="about.html">about</a></li>
+      <li><a href="index.html">home</a></li>
 
-      <li><a href="contact.html">say hello</a></li>
+      <li>
+        <a class="sub-collapser" href="projects.html">projects</a>
+      </li>
+
+      <li><a href="http://www.houseninetytwo.com" target="_blank">blog</a></li>
     </ul>
   </nav>
   <!-- mobile only navigation : ends -->
@@ -107,11 +108,11 @@
 
       <ul class="main-menu becky-portfolio">
 
-        <li><a class="main-link font3black" href="about.html">about</a></li>
+        <li><a class="main-link font3black" href="index.html">home</a></li>
         <li>
-          <a class="main-link font3xblack color sub-menu-trigger" href="index.html">projects</a>
+          <a class="main-link font3xblack sub-menu-trigger color" href="projects.html">projects</a>
         </li>
-        <li><a class="main-link font3black" href="http://houseninetytwo.com">blog</a></li>
+        <li><a class="main-link font3black" href="http://houseninetytwo.com" target="_blank">blog</a></li>
       </ul>
     </div>
   </nav>
@@ -129,7 +130,8 @@
 
     <div class="inner-wrap container">
       <section class="project-title becky-portfolio white-bg pad-top-quarter pad-bottom-quarter">
-        <h1 class="font3xblack black">Data Cleaning Tool<span class="font3light dark">A prototype built in Python to prepare data ready for visualisation </span></h1>
+        <h1 class="font3xblack black">Data Cleaning Tool<span class="font3light dark">A prototype built in Python to
+            prepare data ready for visualisation </span></h1>
         <!-- <br><br><img src="images/works/data-analysis.jpg" width="100%"> -->
 
       </section>
@@ -141,8 +143,9 @@
         <div class="row">
           <article class="col-md-8">
             <p class="grey">
-              This is a prototype application built in Python to do data mining without touching code. 
-              It loads, cleans, wrangles, exports to file and visualises data. The GUI was built using the Tkinker library which prompts user to load a
+              This is a prototype application built in Python to do data mining without touching code.
+              It loads, cleans, wrangles, exports to file and visualises data. The GUI was built using the Tkinker
+              library which prompts user to load a
               dataset, clean it and then export it as a JSON. A GUI was built to make it easier for non-coders.
               The client initially needed the program to generate the mean, mode and median for the inspection score per
               year for each type of vendor’s seating and for each ‘zip code’ therefore these functions were built into
@@ -203,8 +206,11 @@
             <h3 class="font3xblack add-top-quarter">Intergrating Tkinter GUI</h3>
             <p class="grey">
               Tkinter provides a variety of widgets that I needed such as labels, buttons, input fields and checkboxes
-              which were in the GUI wireframes thus was chosen to build this prototype. Furthermore the built in file dialogue function created a pop-up on
-              click to source the files, load it, close the program and also provide extra functionality options. I was also able to customise the style of the app which made it faster to implement the program with a GUI to create a prototype to test the code.
+              which were in the GUI wireframes thus was chosen to build this prototype. Furthermore the built in file
+              dialogue function created a pop-up on
+              click to source the files, load it, close the program and also provide extra functionality options. I was
+              also able to customise the style of the app which made it faster to implement the program with a GUI to
+              create a prototype to test the code.
             </p>
 
             <!-- start: click to tab code -->
@@ -216,8 +222,8 @@
               &nbsp;&nbsp;&nbsp;
 
               <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-              href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
-              target="new">View Github File</a>
+                href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                target="new">View Github File</a>
             </p>
 
 
@@ -425,8 +431,8 @@ def w_violation_facility():
                 &nbsp;&nbsp;&nbsp;
 
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Wrangling.ipynb"
-                target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Wrangling.ipynb"
+                  target="new">View Github File</a>
               </p>
 
 
@@ -572,8 +578,8 @@ btn_browse3.grid(row=3, column=2)
 
 
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
-                target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb"
+                  target="new">View Github File</a>
 
               </p>
 
@@ -765,7 +771,8 @@ def clean_files():
                 </a>
                 &nbsp; &nbsp; &nbsp;
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb" role="button" target="blank">View GitHub File
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/Cleaning.ipynb" role="button"
+                  target="blank">View GitHub File
                 </a>
               </p>
 
@@ -802,7 +809,7 @@ def export_json(file):
 
 </pre>
 
-<pre>
+                      <pre>
 
 
 # --- EXPORT GRAPHS ----- #
@@ -821,7 +828,7 @@ def export_graphs():
     
 </pre>
 
-                      
+
 
                     </div>
                   </div>
@@ -848,8 +855,8 @@ def export_graphs():
 
                 &nbsp; &nbsp; &nbsp;
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/wrangling.ipynb"
-                target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/wrangling.ipynb"
+                  target="new">View Github File</a>
               </p>
 
 
@@ -900,7 +907,7 @@ print(df2_1)
 
 </pre>
 
-                     
+
 
                     </div>
                   </div>
@@ -931,8 +938,8 @@ print(df2_1)
                 &nbsp;&nbsp;&nbsp;
 
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
-                target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                  target="new">View Github File</a>
               </p>
 
 
@@ -1029,8 +1036,8 @@ def error_location():
                 </a>
                 &nbsp;&nbsp;&nbsp;
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
-                        target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                  target="new">View Github File</a>
               </p>
 
 
@@ -1082,7 +1089,7 @@ btn_close.grid(row=5, column=2, sticky=W)
 
 </pre>
 
-                      
+
 
                     </div>
                   </div>
@@ -1093,7 +1100,10 @@ btn_close.grid(row=5, column=2, sticky=W)
 
 
               <p class="grey">
-                It was decided that the two programs would be within the same tool to create a more seamless experience and they would accessed by tabs. Tkinter's layout management function Pack was used to create the tabs then Grid manager was used for the widgets as this helped keep consistency with spacing, layout and visual composition. 
+                It was decided that the two programs would be within the same tool to create a more seamless experience
+                and they would accessed by tabs. Tkinter's layout management function Pack was used to create the tabs
+                then Grid manager was used for the widgets as this helped keep consistency with spacing, layout and
+                visual composition.
               </p>
 
 
@@ -1124,8 +1134,8 @@ btn_close.grid(row=5, column=2, sticky=W)
                 &nbsp;
                 &nbsp;
                 <a class="btn btn-signature btn-becky-portfolio btn-signature-color"
-                        href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
-                        target="new">View Github File</a>
+                  href="https://github.com/LoveBexa/data-cleaning-tool/blob/master/Jupyter/GUI_Tkinter.ipynb"
+                  target="new">View Github File</a>
               </p>
 
 
@@ -1210,7 +1220,7 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
             
             </pre>
 
-                      
+
 
                     </div>
                   </div>
@@ -1226,7 +1236,8 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
               <h3 class="font3xblack add-top-quarter">Visualisation Outcome</h3>
 
               <p class="grey">
-                4 graphs are produced using this tool to plot graphs using Matplotlib. In the GUI you are able to check which ones to show and what values to delete.
+                4 graphs are produced using this tool to plot graphs using Matplotlib. In the GUI you are able to check
+                which ones to show and what values to delete.
               </p>
 
               <img src="images/project/total-violation-facility.png" class="img-responsive">
@@ -1238,12 +1249,16 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
               <h3 class="font3xblack add-top-quarter">Reflection</h3>
 
               <p class="grey">
-                There were many things I wanted to add for this prototype that I did not add due to time constraints this included concurrency as the application lagged when datafiles were being loaded into the GUI.<Br>
-                  Furthermore, the visualisations encountered some issues with X and Y data point visibility as there was too many instances. One solution would be to spit data into quarters, create wider graphs or binning a range of values which may reduce the observation issues.
+                There were many things I wanted to add for this prototype that I did not add due to time constraints
+                this included concurrency as the application lagged when datafiles were being loaded into the GUI.<Br>
+                Furthermore, the visualisations encountered some issues with X and Y data point visibility as there was
+                too many instances. One solution would be to spit data into quarters, create wider graphs or binning a
+                range of values which may reduce the observation issues.
               </p>
 
               <p class="grey">
-                Next steps... would be to build a tool that can accept a more generic dataset as this one was catered towards the specific dataset given.
+                Next steps... would be to build a tool that can accept a more generic dataset as this one was catered
+                towards the specific dataset given.
               </p>
 
 
@@ -1311,8 +1326,8 @@ check_facility.grid(row=8,column=0, sticky=W, columnspan=3,  padx=5)
         </div>
         <div class="row">
           <article class="credits col-md-12  text-center">
-            <p class="font3 dark">Website Built With  &hearts; By <a target="_blank"
-              href="about.html">Becky Liu</a>.</p>          </article>
+            <p class="font3 dark">Website Built With &hearts; By <a target="_blank" href="about.html">Becky Liu</a>.</p>
+          </article>
         </div>
 
 
