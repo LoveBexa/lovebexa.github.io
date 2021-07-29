@@ -1,2 +1,2 @@
 # lovebexa.github.io
-My github site
+Welcome to my GitHub portfolio
