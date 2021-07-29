@@ -44,6 +44,10 @@ h6 {
   margin-bottom: 0;
 }
 
+h4 {
+line-height: 2.5lpsrem;
+}
+
 a {
   text-decoration: none !important;
 }
@@ -1338,6 +1342,7 @@ nav.mastnav.becky-portfolio {
   background-color: #00f1d5;
 }
 
+
 pre {
   letter-spacing: 1px;
   background: #121212;
@@ -1474,8 +1479,8 @@ p {
 .btn-signature.active {
 
 
-  background-color: #ffd155;
-  color: #292929 !important;
+  background-color: #e54c7b;
+  color: #FFFFFF !important;
 
   border: 2px solid black;
   -webkit-box-shadow: 0px 0px 0px 0px #00F1D5;
