@@ -171,7 +171,9 @@ footer.mastfoot.becky-portfolio {
   padding: 50px 0;
 }
 
-.credits {}
+.credits {
+  margin: auto;
+}
 
 .social-wrap {
   padding: 0;
@@ -180,6 +182,7 @@ footer.mastfoot.becky-portfolio {
 .foot-social {
   list-style: none outside none;
   padding: 0;
+  margin: auto;
 }
 
 .foot-social li {
@@ -210,6 +213,7 @@ footer.mastfoot.becky-portfolio {
 .credits p {
   font-size: 12px;
   line-height: 19px;
+
 }
 
 .main-logo {
