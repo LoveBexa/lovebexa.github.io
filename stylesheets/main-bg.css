@@ -3,9 +3,6 @@
 .nav-bg {
     background-color: #292929;
 }
-.about-bg {
-    background-image: url('../images/bg/01.jpg');
-}
 .about-bg-01{
     background-image: url('../images/website/data-analysis.jpg');
 
@@ -14,12 +11,6 @@
     background-image: url('../images/website/counting.jpg');
 
 
-}
-.about-bg-03{
-    background-image: url('../images/about/03.jpg');
-}
-.about-bg-04{
-    background-image: url('../images/about/04.jpg');
 }
 .journal-bg {
     /* contact page bg */
